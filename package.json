@@ -1,0 +1,23 @@
+{
+  "name": "ember-test-helpers",
+  "version": "0.1.0",
+  "description": "Testing helpers for use with ember-cli apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/201-created/ember-test-helpers"
+  },
+  "keywords": [
+    "ember-addon",
+    "testing"
+  ],
+  "author": "Cory Forsyth <cory.forsyth@gmail.com> (http://coryforsyth.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/201-created/ember-test-helpers/issues"
+  },
+  "homepage": "https://github.com/201-created/ember-test-helpers"
+}
