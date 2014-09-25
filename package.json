@@ -22,6 +22,8 @@
   "homepage": "https://github.com/201-created/ember-test-helpers-addon",
   "devDependencies": {
     "broccoli": "^0.12.3",
-    "broccoli-es6-concatenator": "^0.1.7"
+    "broccoli-es6-concatenator": "^0.1.7",
+    "broccoli-merge-trees": "^0.1.4",
+    "broccoli-static-compiler": "^0.1.4"
   }
 }
