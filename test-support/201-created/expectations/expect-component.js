@@ -6,7 +6,7 @@ import eachView from '../utils/each-view';
 var K = function(){};
 
 export default function(){
-  Ember.Test.registerHelper('expectComponent', function(app, expectation, callbackFn, message){
+  Ember.Test.registerHelper('expectComponent', function(app, expectation, options, message){
     var Component = lookupComponent(app, expectation);
 
     if (!Component) {
@@ -18,7 +18,9 @@ export default function(){
       message = 'Expected to find component: ' + expectation;
     }
 
-    if (!callbackFn) { callbackFn = K; }
+    if (!options) { options = {}; }
+
+    var callbackFn = options.callbackFn || K;
 
     var found = 0;
 
