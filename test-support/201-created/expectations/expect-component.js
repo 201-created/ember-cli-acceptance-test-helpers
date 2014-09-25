@@ -1,36 +1,34 @@
 /* global ok */
 import Ember from 'ember';
+import {lookupComponent} from '../utils/lookup';
+import eachView from '../utils/each-view';
+
+var K = function(){};
 
 export default function(){
-  Ember.Test.registerHelper('expectComponent', function(app, name, options, message){
-    var router = app.__container__.lookup('router:main');
-    var Component = app.__container__.lookupFactory('component:'+name);
+  Ember.Test.registerHelper('expectComponent', function(app, expectation, callbackFn, message){
+    var Component = lookupComponent(app, expectation);
+
     if (!Component) {
-      ok(false, 'No Component called ' + name + ' exists.');
+      ok(false, 'No Component called ' + expectation + ' exists.');
       return;
     }
+
     if (!message) {
-      message = 'Expected to find component: ' + name;
+      message = 'Expected to find component: ' + expectation;
     }
 
-    var callbackFn = typeof options === 'function' ? options : Ember.K;
+    if (!callbackFn) { callbackFn = K; }
 
     var found = 0;
 
-    var applicationView = router._activeViews['application'][0];
-
-    applicationView.get('childViews').forEach(function(childView){
-      console.log('checking child view',childView._debugContainerKey);
-      if (Component.detectInstance(childView)) {
-        console.log('found');
+    eachView(app, function(view){
+      if (Component.detectInstance(view)) {
         found++;
-        callbackFn(childView);
-      } else {
-        console.log('not found');
+        callbackFn(view, found);
       }
     });
 
-    console.log('found: ' + found);
     ok(found > 0, message);
   });
 }
