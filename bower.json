@@ -1,0 +1,6 @@
+{
+  "name": "ember-test-helpers-addon",
+  "dependencies": {
+    "loader": "stefanpenner/loader.js#1.0.1"
+  }
+}
