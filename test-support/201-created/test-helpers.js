@@ -1,11 +1,16 @@
-import expectElement from './expectations/expect-element';
-import expectNoElement from './expectations/expect-no-element';
-import expectComponent from './expectations/expect-component';
-import expectView from './expectations/expect-view';
+import Ember from 'ember';
+import expectElement from './test-helpers/expect-element';
+import expectNoElement from './test-helpers/expect-no-element';
+import expectComponent from './test-helpers/expect-component';
+import expectView from './test-helpers/expect-view';
+
+import clickComponent from './test-helpers/click-component';
 
 export default function(){
-  expectElement();
-  expectNoElement();
-  expectComponent();
-  expectView();
+  Ember.Test.registerHelper('expectElement', expectElement);
+  Ember.Test.registerHelper('expectNoElement', expectNoElement);
+  Ember.Test.registerHelper('expectComponent', expectComponent);
+  Ember.Test.registerHelper('expectView', expectView);
+
+  Ember.Test.registerAsyncHelper('clickComponent', clickComponent);
 }
