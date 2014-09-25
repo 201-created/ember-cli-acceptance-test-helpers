@@ -1,5 +1,5 @@
 {
-  "name": "ember-test-helpers",
+  "name": "ember-test-helpers-addon",
   "version": "0.1.0",
   "description": "Testing helpers for use with ember-cli apps",
   "main": "index.js",
@@ -12,12 +12,13 @@
   },
   "keywords": [
     "ember-addon",
+    "ember",
     "testing"
   ],
   "author": "Cory Forsyth <cory.forsyth@gmail.com> (http://coryforsyth.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/201-created/ember-test-helpers/issues"
+    "url": "https://github.com/201-created/ember-test-helpers-addon/issues"
   },
   "homepage": "https://github.com/201-created/ember-test-helpers-addon",
   "devDependencies": {
