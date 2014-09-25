@@ -1,0 +1,23 @@
+{
+  "predef": [
+    "ok",
+    "click",
+    "equal",
+    "find"
+  ],
+  "undef": true,
+  "unused": true,
+  "esnext": true,
+  "curly": true,
+  "eqeqeq": true,
+  "quotmark": "single",
+  "browser": true,
+  "devel": true,
+  "indent": 2,
+  "boss" : true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "eqnull": true,
+  "debug": false
+}
