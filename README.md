@@ -3,6 +3,7 @@
 ### `expectComponent`
 ### `expectView`
 ### `expectElement`
+### `expectNoElement`
 
 #### To do
 
