@@ -7,7 +7,7 @@ function iterateViews(callback){
     }
 
     /*
-    FIXME: is it better to use `_state` or test for `isDestroy/ed/ing`?
+    FIXME: is it better to use `_state` to test for `isDestroy/ed/ing`?
     var state = view._state;
     if (!state) { state = view.state; }
     if (state !== 'inDOM') { return; }

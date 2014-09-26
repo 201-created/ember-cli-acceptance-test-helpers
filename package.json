@@ -1,6 +1,6 @@
 {
   "name": "ember-test-helpers-addon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Testing helpers for use with ember-cli apps",
   "main": "index.js",
   "scripts": {

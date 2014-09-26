@@ -29,6 +29,12 @@ var qUnit = pickFiles('bower_components', {
   destDir: '/assets/qunit'
 });
 
+var ember = pickFiles('bower_components', {
+  srcDir: 'ember',
+  files: ['ember.js'],
+  destDir: '/assets/ember'
+});
+
 var jQuery = pickFiles('bower_components', {
   srcDir: 'jquery/dist',
   files: ['jquery.js'],
@@ -47,7 +53,11 @@ var testIndex = pickFiles('tests', {
   destDir: '/tests'
 });
 
-var assets = mergeTrees([testLoader, testIndex, qUnit, jQuery]);
+var assets = mergeTrees([testLoader,
+                        testIndex,
+                        qUnit,
+                        jQuery,
+                        ember]);
 
 
 module.exports = mergeTrees([testSupport, assets]);
