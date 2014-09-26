@@ -8,8 +8,10 @@ export default function(app, expectation, options, message){
   var $ = app.$;
 
   if (!Component) {
-    ok(false, 'No Component called ' + expectation + ' exists.');
-    return;
+    return {
+      ok: false,
+      message: 'No component called ' + expectation + ' was found in the container'
+    };
   }
 
   if (!message) {
@@ -32,15 +34,22 @@ export default function(app, expectation, options, message){
     }
   });
 
-  ok(found > 0, message);
+  var result = {
+    ok: found > 0,
+    message: message
+  };
 
   if (options.contains) {
     var text = $(elements).text();
     if (text.indexOf(options.contains) === -1) {
-      ok(false, 'Expected component ' + expectation + ' to contain "' + options.contains +
-         '" but contained: "' + text + '"');
+      result.ok = false;
+      result.message = 'Expected component ' + expectation + ' to contain "' + options.contains +
+         '" but contained: "' + text + '"';
     } else {
-      ok(true, 'Component ' + expectation + ' contains: "' + options.contains + '"');
+      result.ok = true;
+      result.message = 'Component ' + expectation + ' contains: "' + options.contains + '"';
     }
   }
+
+  return result;
 }

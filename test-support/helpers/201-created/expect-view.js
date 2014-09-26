@@ -1,5 +1,5 @@
-import {lookupView} from '../utils/lookup';
-import eachView from '../utils/each-view';
+import {lookupView} from './utils/lookup';
+import eachView from './utils/each-view';
 
 var K = function(){};
 

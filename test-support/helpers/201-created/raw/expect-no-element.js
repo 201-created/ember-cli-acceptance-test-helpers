@@ -3,13 +3,10 @@ export default function(app, selector, options, message){
     options = {};
   }
 
-  var count = 0;
-
-  if (!message) {
-    message = 'Expected to find ' + count + ' of ' + selector;
-  }
-
   var element = app.testHelpers.find(selector);
 
-  equal(element.length, count, message);
+  return {
+    ok: element.length === 0,
+    message: message || 'Exepcted to find 0 instances of ' + selector
+  };
 }

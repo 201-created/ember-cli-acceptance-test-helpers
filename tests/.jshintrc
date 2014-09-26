@@ -5,7 +5,9 @@
     "equal",
     "find",
     "QUnit",
-    "test"
+    "test",
+    "expect",
+    "$"
   ],
   "undef": true,
   "unused": true,

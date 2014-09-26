@@ -1,4 +1,4 @@
-import {lookupRouter} from '../utils/lookup';
+import {lookupRouter} from './lookup';
 
 function iterateViews(callback){
   return function(view) {

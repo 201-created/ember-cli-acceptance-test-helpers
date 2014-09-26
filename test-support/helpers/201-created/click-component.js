@@ -1,5 +1,5 @@
-import {lookupComponent} from '../utils/lookup';
-import findComponentElements from '../utils/find-component-elements';
+import {lookupComponent} from './utils/lookup';
+import findComponentElements from './utils/find-component-elements';
 
 export default function(app, expectation, selector){
   var Component = lookupComponent(app, expectation);
