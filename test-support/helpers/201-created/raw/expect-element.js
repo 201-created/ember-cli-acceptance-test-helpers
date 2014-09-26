@@ -2,11 +2,11 @@ function filterElements(elements, text){
   return elements.filter(':contains(' + text + ')');
 }
 
-export default function(app, selector, options, message){
+export default function(app, selector, options){
   var count;
 
   if (typeof options === 'number') {
-    count = options;
+    count   = options;
     options = {count:count};
   }
 
@@ -14,31 +14,34 @@ export default function(app, selector, options, message){
 
   count = options.count === undefined ? 1 : options.count;
 
-  if (!message) { message = 'Expected to find ' + count + ' of ' + selector; }
-
   var elements = app.testHelpers.find(selector);
 
   var result = {};
 
-  result.message = 'Found ' + elements.length + ' of ' + selector;
+  if (options.contains) {
+    var text = options.contains;
+    var filtered = filterElements(elements, text);
 
-  if (elements.length === count) {
-    if (options.contains) {
-      var text = options.contains;
-      var filtered = filterElements(elements, text);
-      result.ok = filtered.length === count;
-      if (!result.ok) {
-        result.message += ' but ' + filtered.length + ' containing "' +
-          text + '"';
+    result.ok = filtered.length === count;
+
+    result.message = 'Found ' + filtered.length + ' of ' + selector +
+      ' containing "' + text + '"';
+
+    if (!result.ok) {
+      if (elements.length === filtered.length) {
+        result.message = 'Found ' + filtered.length + ' of ' + selector +
+          ' containing "' + text + '" but expected ' + count;
       } else {
-        result.message += ' containing "' + text + '"';
+        result.message = 'Found ' + elements.length + ' of ' + selector +
+          ' but ' + filtered.length + '/' + count + ' containing "' + text + '"';
       }
-    } else {
-      result.ok = true;
     }
   } else {
-    result.ok = false;
-    result.message += ' but expected ' + count;
+    result.message = 'Found ' + elements.length + ' of ' + selector;
+    result.ok = elements.length === count;
+    if (!result.ok) {
+      result.message += ' but expected ' + count;
+    }
   }
 
   return result;

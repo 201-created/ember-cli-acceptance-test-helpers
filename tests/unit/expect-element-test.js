@@ -110,5 +110,26 @@ test('takes option `contains`', function(){
   result = expectElement(app, '.the-div', {contains:'not found'});
 
   ok(!result.ok, 'fails');
-  equal(result.message, 'Found 1 of .the-div but 0 containing "not found"');
+  equal(result.message, 'Found 1 of .the-div but 0/1 containing "not found"');
+});
+
+test('option `contains` filters the elements', function(){
+  var find = function(){
+    return $([
+      makeElement('div', {class:'the-div'}),
+      makeElement('div', {class:'the-div', text: 'foo bar'})
+    ]);
+  };
+
+  var app = makeApp(find);
+
+  var result = expectElement(app, '.the-div', {contains:'foo'});
+
+  ok(result.ok, 'passes');
+  equal(result.message, 'Found 1 of .the-div containing "foo"');
+
+  result = expectElement(app, '.the-div', {contains:'not found'});
+
+  ok(!result.ok, 'fails');
+  equal(result.message, 'Found 2 of .the-div but 0/1 containing "not found"');
 });
