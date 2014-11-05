@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Application from '../../app';
 import Router from '../../router';
 import config from '../../config/environment';
+import registerAcceptanceTestHelpers from './201-created/register-acceptance-test-helpers';
 
 export default function startApp(attrs) {
   var App;
@@ -15,6 +16,7 @@ export default function startApp(attrs) {
 
   Ember.run(function() {
     App = Application.create(attributes);
+    registerAcceptanceTestHelpers();
     App.setupForTesting();
     App.injectTestHelpers();
   });
