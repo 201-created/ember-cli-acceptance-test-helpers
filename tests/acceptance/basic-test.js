@@ -19,3 +19,27 @@ test('visiting /', function() {
     equal(currentPath(), 'index');
   });
 });
+
+test('visiting /, expectComponent', function() {
+  visit('/');
+
+  andThen(function() {
+    App.testHelpers.expectComponent('simple-component');
+  });
+});
+
+test('visiting /, expectElement', function() {
+  visit('/');
+
+  andThen(function() {
+    App.testHelpers.expectElement('.some-div');
+  });
+});
+
+test('visiting /, expectNoElement', function() {
+  visit('/');
+
+  andThen(function() {
+    App.testHelpers.expectNoElement('.missing-div');
+  });
+});
