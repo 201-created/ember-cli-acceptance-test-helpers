@@ -43,3 +43,14 @@ test('visiting /, expectNoElement', function() {
     App.testHelpers.expectNoElement('.missing-div');
   });
 });
+
+test('visiting /, withinElement', function() {
+  visit('/');
+
+  andThen(function() {
+    App.testHelpers.withinElement('.some-div', function(){
+      App.testHelpers.expectElement('.inner-div');
+      App.testHelpers.expectNoElement('.outer-div');
+    });
+  });
+});

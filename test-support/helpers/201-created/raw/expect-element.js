@@ -1,3 +1,5 @@
+import {getContext} from '../utils/helper-context';
+
 function filterElements(elements, text){
   return elements.filter(':contains(' + text + ')');
 }
@@ -14,7 +16,7 @@ export default function(app, selector, options){
 
   count = options.count === undefined ? 1 : options.count;
 
-  var elements = app.testHelpers.find(selector);
+  var elements = app.testHelpers.find(selector, getContext());
 
   var result = {};
 
