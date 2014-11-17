@@ -41,13 +41,13 @@ A convenience for `expectElement` when the count is 0.
 ## Setup
 
   * Add ember-test-helpers to your package.json:
-  * `npm install --save-dev ember-test-helpers`
+  * `npm install --save-dev ember-cli-acceptance-test-helpers`
   * import the registerTestHelpers function in your `tests/helpers/start-app.js`:
   * Add this line to to the top of `start-app.js`:
-    * `import registerTestHelpers from './201-created/register-test-helpers';`
+    * `import registerAcceptanceTestHelpers from './201-created/register-acceptance-test-helpers';`
   * Register the test helpers:
     * Add this line to `start-app.js` before `App.injectTestHelpers`
-    * `registerTestHelpers();`
+    * `registerAcceptanceTestHelpers();`
   * Update your `tests/.jshintrc` file to notify it of the new globals
     that these helpers have added. Add the following lines to the
     `predef` array (after "currentRouteName"):
