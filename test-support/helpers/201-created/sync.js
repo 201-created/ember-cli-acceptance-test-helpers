@@ -4,8 +4,12 @@ import rawExpectElement from   './raw/expect-element';
 import rawExpectNoElement from './raw/expect-no-element';
 import rawExpectComponent from './raw/expect-component';
 
-var expectElement   = wrapInExpectation(rawExpectElement);
-var expectNoElement = wrapInExpectation(rawExpectNoElement);
-var expectComponent = wrapInExpectation(rawExpectComponent);
+var wrappedExpectElement   = wrapInExpectation(rawExpectElement);
+var wrappedExpectNoElement = wrapInExpectation(rawExpectNoElement);
+var wrappedExpectComponent = wrapInExpectation(rawExpectComponent);
 
-export { expectElement, expectNoElement, expectComponent };
+export {
+  wrappedExpectElement,
+  wrappedExpectNoElement,
+  wrappedExpectComponent
+};

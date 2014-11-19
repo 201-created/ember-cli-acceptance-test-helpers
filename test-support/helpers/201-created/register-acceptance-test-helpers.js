@@ -1,17 +1,17 @@
 import Ember from 'ember';
 
-import { expectElement,
-         expectNoElement,
-         expectComponent } from './sync';
+import { wrappedExpectElement,
+         wrappedExpectNoElement,
+         wrappedExpectComponent } from './sync';
 
 import withinElement from './utils/within-element';
 
 import { clickComponent } from './async';
 
 export default function(){
-  Ember.Test.registerHelper('expectElement',   expectElement);
-  Ember.Test.registerHelper('expectNoElement', expectNoElement);
-  Ember.Test.registerHelper('expectComponent', expectComponent);
+  Ember.Test.registerHelper('expectElement',   wrappedExpectElement);
+  Ember.Test.registerHelper('expectNoElement', wrappedExpectNoElement);
+  Ember.Test.registerHelper('expectComponent', wrappedExpectComponent);
 
   Ember.Test.registerHelper('withinElement', withinElement);
 
