@@ -40,6 +40,11 @@ A convenience for `expectElement` when the count is 0.
 
 ## Setup
 
+  * Run `ember generate ember-cli-acceptance-test-helpers`
+  * Commit any file changes made if your application is under source code management
+
+The generator makes changes to files assuming the structure of them has not changed much from the default version created during the initial Ember application creation. If too many changes have been made you will need to manually make the changes below instead:
+
   * Add ember-test-helpers to your package.json:
   * `npm install --save-dev ember-cli-acceptance-test-helpers`
   * import the registerTestHelpers function in your `tests/helpers/start-app.js`:
@@ -63,8 +68,6 @@ A convenience for `expectElement` when the count is 0.
 
 #### To do
 
- * Possible to automatically import helpers (via ember generator?) (yes: insertIntoFile)
- * possible to automatically add globals to .jshintrc? (yes: insertIntoFile)
  * clickLink
  * test/document `hasClass` option
  * ensure that `expectNoElement(selector, {contains:text}) works`
