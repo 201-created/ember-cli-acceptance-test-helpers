@@ -4,15 +4,16 @@ function filterElements(elements, text){
   return elements.filter(':contains(' + text + ')');
 }
 
-export default function(app, selector, options){
-  var count;
-
-  if (typeof options === 'number') {
-    count   = options;
-    options = {count:count};
+export default function(app, selector, count, options){
+  if (typeof count === 'object') {
+    options = count;
   }
 
   if (!options) { options = {}; }
+  
+  if (typeof count === 'number') {
+    options.count = count;
+  }
 
   count = options.count === undefined ? 1 : options.count;
 

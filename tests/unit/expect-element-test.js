@@ -117,6 +117,24 @@ test('takes option `contains`', function(){
   equal(result.message, 'Found 1 of .the-div but 0/1 containing "not found"');
 });
 
+test('can be passed a number and option `contains`', function(){
+  var find = function(){
+    return makeElements('div', {class:'the-div', text: 'foo bar'}, 3);
+  };
+
+  var app = makeApp(find);
+
+  var result = expectElement(app, '.the-div', 3, {contains:'foo'});
+
+  ok(result.ok, 'passes');
+  equal(result.message, 'Found 3 of .the-div containing "foo"');
+
+  result = expectElement(app, '.the-div', 3, {contains:'not found'});
+
+  ok(!result.ok, 'fails');
+  equal(result.message, 'Found 3 of .the-div but 0/3 containing "not found"');
+});
+
 test('option `contains` filters the elements', function(){
   var find = function(){
     return $([
