@@ -1,5 +1,8 @@
 # Ember Test Helpers
 
+A set of useful helper for ember-cli acceptance tests. Includes
+`expectComponent`, `expectElement`, and `clickComponent`.
+
 ### `expectComponent`
 
 `expectComponent(componentName, count, options)`
