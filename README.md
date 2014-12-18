@@ -77,6 +77,5 @@ The generator makes changes to files assuming the structure of them has not chan
 
  * clickLink
  * test/document `hasClass` option
- * ensure that `expectNoElement(selector, {contains:text}) works`
  * a `within(selector/component, block&)` helper
  * every expectation only adds 1 expectation, so it's easy to use `expect(X)`

@@ -41,6 +41,7 @@ test('visiting /, expectNoElement', function() {
 
   andThen(function() {
     App.testHelpers.expectNoElement('.missing-div');
+    App.testHelpers.expectNoElement('h2', {contains: 'there'});
   });
 });
 
