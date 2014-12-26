@@ -53,5 +53,7 @@ test('visiting /, withinElement', function() {
       App.testHelpers.expectElement('.inner-div');
       App.testHelpers.expectNoElement('.outer-div');
     });
+
+    App.testHelpers.expectElement('h2');
   });
 });
