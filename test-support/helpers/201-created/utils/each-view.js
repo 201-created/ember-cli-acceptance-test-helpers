@@ -2,6 +2,10 @@ import {lookupRouter} from './lookup';
 
 function iterateViews(callback){
   return function(view) {
+    if (!view.get) {
+      // FIXME LegacyBindAttrNode has no `get` method
+      return;
+    }
     if (view.get('isDestroyed') || view.get('isDestroying')) {
       return;
     }
