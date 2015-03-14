@@ -1,6 +1,8 @@
 # Ember CLI Acceptance Test Helpers Changelog
 
-## Master
+## 0.3.1
+
+ * LegacyBindAttrNode has no `get`
 
 ## 0.3.0
 
