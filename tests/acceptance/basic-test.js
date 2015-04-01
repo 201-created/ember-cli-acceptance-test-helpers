@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
+import expectComponent from '../helpers/201-created/raw/expect-component';
 
 var App;
 
@@ -25,6 +26,18 @@ test('visiting /, expectComponent', function() {
 
   andThen(function() {
     App.testHelpers.expectComponent('simple-component');
+
+    var result = expectComponent(App, 'another-component');
+    ok(!result.ok, 'fails on invisible component');
+
+    click('.link');
+  });
+
+  andThen(function() {
+    App.testHelpers.expectComponent('another-component');
+
+    var result = expectComponent(App, 'simple-component');
+    ok(!result.ok, 'fails on invisible component');
   });
 });
 
