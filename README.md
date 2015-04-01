@@ -73,6 +73,19 @@ The generator makes changes to files assuming the structure of them has not chan
 
   * You may need to restart your ember server so that it picks up the new .jshintrc file.
 
+### Releasing Updates to NPM
+ * Create an npm user if you don't have one using `npm adduser`
+ * ask a team member to add your user to npm for this project
+ * update the version in `package.json`
+ * `npm publish`
+ * Visit https://www.npmjs.com/package/ember-cli-acceptance-test-helpers and confirm the correct version number
+ 
+If you have errors running `npm adduser`, you may have previously set your npm registry to a read-only or non-standard URL.  
+ * Run this command to check `npm config get registry`  
+ * Run this command to reset:`npm config set registry https://registry.npmjs.org/` 
+ 
+[more docs](https://docs.npmjs.com/getting-started/publishing-npm-packages)
+ 
 #### To do
 
  * clickLink
