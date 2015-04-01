@@ -23,8 +23,10 @@ function iterateViews(callback){
 }
 
 export default function(app, callback){
-  var router = lookupRouter(app);
-  var applicationView = router._activeViews.application[0];
+  var allViews = Ember.View.views;
+  var views = Object.keys(allViews).map(function(viewName) {
+    return allViews[viewName];
+  });
 
-  applicationView.get('childViews').forEach(iterateViews(callback));
+  views.forEach(iterateViews(callback));
 }
