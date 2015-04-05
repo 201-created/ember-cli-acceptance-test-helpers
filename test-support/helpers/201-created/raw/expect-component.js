@@ -3,7 +3,7 @@ import eachView from '../utils/each-view';
 
 var K = function(){};
 
-export default function(app, expectation, count, options, message){
+export default function(app, expectation, count, options, customMessage){
   var Component = lookupComponent(app, expectation);
   var $ = app.$;
 
@@ -14,9 +14,9 @@ export default function(app, expectation, count, options, message){
     };
   }
 
-  if (!message) {
-    message = 'Expected to find component: ' + expectation;
-  }
+  var message = count ? 
+                'Expected to find '+count+' components of type ' + expectation + '. Found: ' : 
+                'Expected to find at least one component: ' + expectation;
 
   if (!options) { options = {}; }
 
@@ -34,9 +34,13 @@ export default function(app, expectation, count, options, message){
     }
   });
 
+  if (count)
+  {
+    message += found;
+  }
   var result = {
     ok: count ? found === count : found > 0, // if count specified then we must have exactly that many, otherwise we want at least 1
-    message: message
+    message: customMessage ? customMessage : message
   };
 
   if (result.ok && options.contains) {
