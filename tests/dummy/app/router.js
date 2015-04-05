@@ -11,7 +11,7 @@ Router.map(function() {
   this.route('compound-component');
   this.route('contains');
   this.resource('compound-route-outer', function() {
-  	this.route('compound-route-inner');
+  	this.resource('compound-route-inner');
   })
 });
 

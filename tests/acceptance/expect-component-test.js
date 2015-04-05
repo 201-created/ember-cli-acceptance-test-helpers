@@ -122,7 +122,7 @@ test('expectComponent passes when component is present and text does not match c
   });
 });
 
-test('expectComponent gives component missing error when component is not present contains option provided', function(assert) {
+test('expectComponent gives component missing error when component is not present with contains option provided', function(assert) {
   visit('/contains');
 
   andThen(function() {
