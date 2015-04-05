@@ -10,7 +10,7 @@ A set of useful helper for ember-cli acceptance tests. Includes
 Passes when the component exists in the container and is in the DOM.
 
 `count` optional, defaults to `null`. `null` means 'at least one'. 
-If an integer count is provided, there must exactly that many components in the DOM.
+If an integer count is provided, there must be exactly that many components in the DOM.
 
 If `options.contains` is set, the expectation only passes if the
 component is in the DOM and contains the string from `options.contains`.
