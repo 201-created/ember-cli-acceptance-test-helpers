@@ -95,6 +95,15 @@ test('expectComponent passes when component is present inside a compound compone
   });
 });
 
+test('expectComponent passes when component is present inside a nested route', function(assert) {
+  visit('/compound-route-outer/compound-route-inner');
+
+  andThen(function() {
+    var result = expectComponent(App, 'simple-component');
+    ok(result.ok, "expected a pass");
+  });
+});
+
 test('expectComponent passes when component is present and text matches contains option', function(assert) {
   visit('/contains');
 

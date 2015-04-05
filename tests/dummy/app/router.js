@@ -10,6 +10,9 @@ Router.map(function() {
   this.route('two-components');
   this.route('compound-component');
   this.route('contains');
+  this.resource('compound-route-outer', function() {
+  	this.route('compound-route-inner');
+  })
 });
 
 export default Router;
