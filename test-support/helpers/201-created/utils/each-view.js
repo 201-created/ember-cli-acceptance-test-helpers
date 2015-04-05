@@ -6,5 +6,9 @@ export default function(app, callback){
     return allViews[viewName];
   });
 
-  views.forEach(callback); // views contains every view in the page
+  var liveViews = views.filter(function(view) {
+    return (!view.get('isDestroyed') && !view.get('isDestroying'));
+  });
+
+  liveViews.forEach(callback); // views contains every view in the page
 }
