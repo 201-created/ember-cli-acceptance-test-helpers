@@ -37,7 +37,3 @@ test('fails if the component is not in the container', function(){
   equal(result.message, 'No component called non-existent was found in the container');
 });
 
-// 'fails is the component is found but destroyed'
-// 'fails if > 1 components are found but `count` is not specified'
-// 'passes if 1 component is found and it is not destroyed'
-// 'passes if `count` components are found'

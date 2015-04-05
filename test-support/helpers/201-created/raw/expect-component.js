@@ -3,7 +3,7 @@ import eachView from '../utils/each-view';
 
 var K = function(){};
 
-export default function(app, expectation, options, message){
+export default function(app, expectation, count, options, message){
   var Component = lookupComponent(app, expectation);
   var $ = app.$;
 
@@ -35,11 +35,11 @@ export default function(app, expectation, options, message){
   });
 
   var result = {
-    ok: found > 0,
+    ok: count ? found === count : found > 0, // if count specified then we must have exactly that many, otherwise we want at least 1
     message: message
   };
 
-  if (options.contains) {
+  if (result.ok && options.contains) {
     var text = $(elements).text();
     if (text.indexOf(options.contains) === -1) {
       result.ok = false;
