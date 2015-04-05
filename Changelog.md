@@ -2,6 +2,8 @@
 
 ## Master
 
+ * Fix bug in `expectComponent` (@Twinkletoes)
+
 ## 0.3.2
 
 * Support Ember 1.11.0
