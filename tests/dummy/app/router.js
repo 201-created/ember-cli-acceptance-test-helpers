@@ -7,6 +7,9 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('another');
+  this.route('two-components');
+  this.route('compound-component');
+  this.route('contains');
 });
 
 export default Router;
