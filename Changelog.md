@@ -1,5 +1,7 @@
 # Ember CLI Acceptance Test Helpers Changelog
 
+## Master
+
 ## 0.3.2
 
 * Support Ember 1.11.0
