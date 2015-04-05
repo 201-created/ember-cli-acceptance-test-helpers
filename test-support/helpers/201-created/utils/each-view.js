@@ -1,6 +1,6 @@
 import {lookupRouter} from './lookup';
 
-function iterateViews(callback){
+function iterateViews(callback, callbackHistory){
   return function(view) {
     if (!view.get) {
       // FIXME LegacyBindAttrNode has no `get` method
@@ -17,8 +17,12 @@ function iterateViews(callback){
     if (state !== 'inDOM') { return; }
     */
 
-    callback(view);
-    view.get('childViews').forEach(iterateViews(callback));
+    if (!callbackHistory.contains(view))
+    {
+      callback(view);
+      callbackHistory.push(view);
+    }
+    view.get('childViews').forEach(iterateViews(callback, callbackHistory));
   };
 }
 
@@ -28,5 +32,6 @@ export default function(app, callback){
     return allViews[viewName];
   });
 
-  views.forEach(iterateViews(callback));
+  var callbackHistory = [];
+  views.forEach(iterateViews(callback, callbackHistory));
 }
