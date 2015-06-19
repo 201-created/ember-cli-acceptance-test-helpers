@@ -27,7 +27,12 @@ function iterateViews(callback, callbackHistory){
 }
 
 export default function(app, callback){
-  var allViews = Ember.View.views;
+  var allViews = app.__container__.lookup('-view-registry:main');
+
+  if ( ! allViews ) { // Ember 1.11.0 compatibility
+    allViews = Ember.View.views;
+  } 
+ 
   var views = Object.keys(allViews).map(function(viewName) {
     return allViews[viewName];
   });
