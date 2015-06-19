@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import expectComponent from '../helpers/201-created/raw/expect-component';
+import { module } from 'qunit';
+import { test } from 'ember-qunit';
 
 var App;
 
@@ -18,7 +20,7 @@ test('expectComponent passes when component is present', function(assert) {
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component');
-    ok(result.ok, "expected a pass");
+    assert.ok(result.ok, "expected a pass");
   });
 });
 
@@ -27,7 +29,7 @@ test('expectComponent fails when component is not present', function(assert) {
 
   andThen(function() {
     var result = expectComponent(App, 'another-component');
-    ok(!result.ok, "expected a failure");
+    assert.ok(!result.ok, "expected a failure");
   });
 });
 
@@ -46,7 +48,7 @@ test('expectComponent fails when component is present twice with count of 1', fu
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component', 1);
-    ok(!result.ok, "expected a failure");
+    assert.ok(!result.ok, "expected a failure");
   });
 });
 
@@ -67,7 +69,7 @@ test('expectComponent passes when component is present twice with count of 2', f
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component', 2);
-    ok(result.ok, "expected a pass");
+    assert.ok(result.ok, "expected a pass");
   });
 });
 
@@ -76,7 +78,7 @@ test('expectComponent fails when component is present twice with count of 3', fu
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component', 3);
-    ok(!result.ok, "expected a failure");
+    assert.ok(!result.ok, "expected a failure");
   });
 });
 
@@ -85,7 +87,7 @@ test('expectComponent passes when component is present twice but count unspecifi
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component');
-    ok(result.ok, "expected a pass");
+    assert.ok(result.ok, "expected a pass");
   });
 });
 
@@ -94,7 +96,7 @@ test('expectComponent passes when component is present twice and count null', fu
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component', null);
-    ok(result.ok, "expected a pass");
+    assert.ok(result.ok, "expected a pass");
   });
 });
 
@@ -103,7 +105,7 @@ test('expectComponent passes when component is present inside a compound compone
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component');
-    ok(result.ok, "expected a pass");
+    assert.ok(result.ok, "expected a pass");
   });
 });
 
@@ -112,7 +114,7 @@ test('expectComponent passes when component is present inside a nested route', f
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component');
-    ok(result.ok, "expected a pass");
+    assert.ok(result.ok, "expected a pass");
   });
 });
 
@@ -121,7 +123,7 @@ test('expectComponent passes when component is present and text matches contains
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component', null, {contains: 'text is present'});
-    ok(result.ok, "expected a pass");
+    assert.ok(result.ok, "expected a pass");
   });
 });
 
@@ -130,7 +132,7 @@ test('expectComponent passes when component is present and text does not match c
 
   andThen(function() {
     var result = expectComponent(App, 'simple-component', null, {contains: 'penguins are present'});
-    ok(!result.ok, "expected a failure");
+    assert.ok(!result.ok, "expected a failure");
   });
 });
 

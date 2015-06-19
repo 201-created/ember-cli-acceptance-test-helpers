@@ -12,7 +12,7 @@ Router.map(function() {
   this.route('contains');
   this.resource('compound-route-outer', function() {
   	this.resource('compound-route-inner');
-  })
+  });
 });
 
 export default Router;

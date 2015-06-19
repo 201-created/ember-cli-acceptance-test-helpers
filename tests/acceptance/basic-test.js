@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import expectComponent from '../helpers/201-created/raw/expect-component';
+import { module } from 'qunit';
+import { test } from 'ember-qunit';
 
 var App;
 
@@ -13,22 +15,22 @@ module('Acceptance: Basic', {
   }
 });
 
-test('visiting /', function() {
+test('visiting /', function(assert) {
   visit('/');
 
   andThen(function() {
-    equal(currentPath(), 'index');
+    assert.equal(currentPath(), 'index');
   });
 });
 
-test('visiting /, expectComponent', function() {
+test('visiting /, expectComponent', function(assert) {
   visit('/');
 
   andThen(function() {
     App.testHelpers.expectComponent('simple-component');
 
     var result = expectComponent(App, 'another-component');
-    ok(!result.ok, 'fails on invisible component');
+    assert.ok(!result.ok, 'fails on invisible component');
 
     click('.link');
   });
@@ -37,11 +39,11 @@ test('visiting /, expectComponent', function() {
     App.testHelpers.expectComponent('another-component');
 
     var result = expectComponent(App, 'simple-component');
-    ok(!result.ok, 'fails on invisible component');
+    assert.ok(!result.ok, 'fails on invisible component');
   });
 });
 
-test('visiting /, expectElement', function() {
+test('visiting /, expectElement', function(assert) {
   visit('/');
 
   andThen(function() {
@@ -49,7 +51,7 @@ test('visiting /, expectElement', function() {
   });
 });
 
-test('visiting /, expectNoElement', function() {
+test('visiting /, expectNoElement', function(assert) {
   visit('/');
 
   andThen(function() {
@@ -58,7 +60,7 @@ test('visiting /, expectNoElement', function() {
   });
 });
 
-test('visiting /, withinElement', function() {
+test('visiting /, withinElement', function(assert) {
   visit('/');
 
   andThen(function() {
