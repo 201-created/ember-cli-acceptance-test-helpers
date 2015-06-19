@@ -17,8 +17,7 @@ function iterateViews(callback, callbackHistory){
     if (state !== 'inDOM') { return; }
     */
 
-    // TODO: prototype extensions are deprecated
-    if (!callbackHistory.contains(view))
+    if ( ! _.includes(callbackHistory, view) )
     {
       callback(view);
       callbackHistory.push(view);
