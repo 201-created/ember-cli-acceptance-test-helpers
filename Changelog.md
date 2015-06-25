@@ -2,6 +2,12 @@
 
 ## Master
 
+## 0.3.4
+
+ * Support `expectComponent` in Ember 1.13 (@givanse)
+
+## 0.3.3
+
  * Fix bug in `expectComponent` (@Twinkletoes)
 
 ## 0.3.2
