@@ -35,10 +35,6 @@ module.exports = {
             // .jshintrc file
             .then( function() {
                 return this.insertIntoFile( thirdFile, thirdText, { after: thirdLocationText } );
-            }.bind(this))
-
-            .then( function() {
-              return this.addBowerPackageToProject('lodash', '3.9.3');
             }.bind(this));
     },
 
