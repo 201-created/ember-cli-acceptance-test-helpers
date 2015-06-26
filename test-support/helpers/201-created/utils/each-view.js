@@ -17,8 +17,7 @@ function iterateViews(callback, callbackHistory){
     if (state !== 'inDOM') { return; }
     */
 
-    if ( ! _.includes(callbackHistory, view) )
-    {
+    if (callbackHistory.indexOf(view) === -1) {
       callback(view);
       callbackHistory.push(view);
     }
