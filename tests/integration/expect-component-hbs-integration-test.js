@@ -16,7 +16,7 @@ moduleForComponent('simple-component', {
   integration: true
 });
 
-test('finds component in hbs integration test', function(assert) {
+test('finds root component in hbs integration test', function(assert) {
   this.render(hbs`{{simple-component}}`);
 
   andThen(function() {
@@ -33,3 +33,13 @@ test('does not find component when not present in hbs integration test', functio
     assert.ok(!result.ok, "expected a failure");
 	});
 });
+
+test('finds inner component in hbs integration test', function(assert) {
+  this.render(hbs`{{compound-component}}`);
+
+  andThen(function() {
+	  var result = expectComponent(App, 'simple-component', 1);
+    assert.ok(result.ok, "expected success");
+	});
+});
+
