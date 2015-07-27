@@ -1,4 +1,5 @@
 # Ember Test Helpers
+# Ember-cli-acceptance-test-helpers
 
 A set of useful helper for ember-cli acceptance tests. Includes
 `expectComponent`, `expectElement`, and `clickComponent`.
@@ -93,3 +94,4 @@ If you have errors running `npm adduser`, you may have previously set your npm r
  * test/document `hasClass` option
  * a `within(selector/component, block&)` helper
  * every expectation only adds 1 expectation, so it's easy to use `expect(X)`
+For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
