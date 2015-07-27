@@ -43,7 +43,7 @@ test('visiting /, expectComponent', function(assert) {
   });
 });
 
-test('visiting /, expectElement', function(assert) {
+test('visiting /, expectElement', function(/*assert*/) {
   visit('/');
 
   andThen(function() {
@@ -51,7 +51,7 @@ test('visiting /, expectElement', function(assert) {
   });
 });
 
-test('visiting /, expectNoElement', function(assert) {
+test('visiting /, expectNoElement', function(/*assert*/) {
   visit('/');
 
   andThen(function() {
@@ -60,7 +60,7 @@ test('visiting /, expectNoElement', function(assert) {
   });
 });
 
-test('visiting /, withinElement', function(assert) {
+test('visiting /, withinElement', function(/*assert*/) {
   visit('/');
 
   andThen(function() {
