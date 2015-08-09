@@ -1,4 +1,5 @@
 # Ember Test Helpers
+[![Build Status](https://travis-ci.org/201-created/ember-cli-acceptance-test-helpers.svg?branch=master)](https://travis-ci.org/201-created/ember-cli-acceptance-test-helpers)
 
 A set of useful helper for ember-cli acceptance tests. Includes
 `expectComponent`, `expectElement`, and `clickComponent`.
