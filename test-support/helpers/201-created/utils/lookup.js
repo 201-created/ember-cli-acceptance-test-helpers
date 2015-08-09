@@ -1,11 +1,11 @@
-export function lookupRouter(app){
-  return app.__container__.lookup('router:main');
+export function lookupRouter(container){
+  return container.lookup('router:main');
 }
 
-export function lookupComponent(app, componentName){
-  return app.__container__.lookupFactory('component:' + componentName);
+export function lookupComponent(container, componentName){
+  return container.lookupFactory('component:' + componentName);
 }
 
-export function lookupView(app, viewName){
-  return app.__container__.lookupFactory('view:' + viewName);
+export function lookupView(container, viewName){
+  return container.lookupFactory('view:' + viewName);
 }
