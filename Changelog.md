@@ -2,6 +2,12 @@
 
 ## Master
 
+## 0.4.0
+
+ * Change `expectComponent` to use a container to support usage in integration tests (see [23](https://github.com/201-created/ember-cli-acceptance-test-helpers/pull/23) and [22](https://github.com/201-created/ember-cli-acceptance-test-helpers/issues/22) )
+ * To use `expectComponent` with component integration tests, ember-qunit version >= 0.4.7 is required
+ * Upgrade to ember-cli 1.13.8
+
 ## 0.3.5
 
  * Remove lodash dependency
