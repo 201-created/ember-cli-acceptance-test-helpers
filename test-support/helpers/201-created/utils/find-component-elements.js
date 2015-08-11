@@ -1,8 +1,8 @@
 import eachView from './each-view';
 
-export default function findComponentElements(app, componentKlass) {
+export default function findComponentElements(container, componentKlass) {
   var elements = [];
-  eachView(app, function(view){
+  eachView(container, function(view){
     if (componentKlass.detectInstance(view)) {
       elements.push(view.element);
     }

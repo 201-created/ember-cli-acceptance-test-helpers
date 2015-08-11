@@ -3,9 +3,15 @@ import eachView from '../utils/each-view';
 
 var K = function(){};
 
-export default function(app, expectation, count, options, customMessage){
-  var Component = lookupComponent(app, expectation);
-  var $ = app.$;
+export default function(appOrContainer, expectation, count, options, customMessage){
+  var container;
+  if (appOrContainer.__container__) {
+    container = appOrContainer.__container__;
+  } else {
+    container = appOrContainer;
+  }
+  var Component = lookupComponent(container, expectation);
+  var $ = Ember.$;
 
   if (!Component) {
     return {
@@ -22,7 +28,7 @@ export default function(app, expectation, count, options, customMessage){
 
   var elements = [];
 
-  eachView(app, function(view){
+  eachView(container, function(view){
     if (Component.detectInstance(view)) {
       found++;
       callbackFn(view, found);
