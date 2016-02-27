@@ -4,6 +4,33 @@ function filterElements(elements, text){
   return elements.filter(':contains(' + text + ')');
 }
 
+function buildMessage(selector, { filteredCount, selectorCount, ok }, { contains, message, count }) {
+  if (!message) {
+    if (contains) {
+      message = 'Found ' + filteredCount + ' of ' + selector +
+        ' containing "' + contains + '"';
+
+      if (!ok) {
+        if (selectorCount === filteredCount) {
+          message = 'Found ' + filteredCount + ' of ' + selector +
+            ' containing "' + contains + '" but expected ' + count;
+        } else {
+          message = 'Found ' + selectorCount + ' of ' + selector +
+            ' but ' + filteredCount + '/' + count + ' containing "' + contains + '"';
+        }
+      }
+    }
+    else {
+      message = 'Found ' + selectorCount + ' of ' + selector;
+
+      if (!ok) {
+        message += ' but expected ' + count;
+      }
+    }
+  }
+  return message;
+}
+
 export default function(app, selector, count, options){
   if (typeof count === 'object') {
     options = count;
@@ -14,57 +41,28 @@ export default function(app, selector, count, options){
   if (typeof count === 'number') {
     options.count = count;
   }
-  // debugger;
 
-  count = options.count === undefined ? 1 : options.count;
+  if (options.count === undefined) {
+    options.count = 1;
+  }
 
   var elements = app.testHelpers.find(selector, getContext());
 
   var result = {};
 
-  // options
-  // {message: whatever, contains: thka}
+  result.selectorCount = elements.length;
 
   if (options.contains) {
-    // why is options.contains false
-    var text = options.contains;
-    var filtered = filterElements(elements, text);
+    let filtered = filterElements(elements, options.contains);
 
-    result.ok = filtered.length === count;
+    result.ok = filtered.length === options.count;
+    result.filteredCount = filtered.length;
 
-    result.message = 'Found ' + filtered.length + ' of ' + selector +
-      ' containing "' + text + '"';
-
-    if (!result.ok) {
-      if (elements.length === filtered.length) {
-        result.message = 'Found ' + filtered.length + ' of ' + selector +
-          ' containing "' + text + '" but expected ' + count;
-      } else {
-        result.message = 'Found ' + elements.length + ' of ' + selector +
-          ' but ' + filtered.length + '/' + count + ' containing "' + text + '"';
-      }
-    }
   } else {
-    // i'm erroring here
-    // want result.message = result.message; ...but this isn't really anything
-
-    result.ok = elements.length === count;
-
-    // move message to a helper
-
-    if (options.message) {
-      let message = options.message;
-      result.message = message;
-    }
-    else {
-      result.message = 'Found ' + elements.length + ' of ' + selector;
-
-      if (!result.ok) {
-        // and here
-        result.message += ' but expected ' + count;
-      }
-    }
+    result.ok = elements.length === options.count;
   }
+
+  result.message = buildMessage(selector, result, options);
 
   return result;
 }
