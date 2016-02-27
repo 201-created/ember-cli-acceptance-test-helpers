@@ -153,3 +153,29 @@ test('option `contains` filters the elements', function(assert) {
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 2 of .the-div but 0/1 containing "not found"');
 });
+
+test('expectElement fails with a custom message', function(assert) {
+  let app = makeApp(() => []);
+  let message = 'custom test label message';
+
+  // {message: message}
+  let result = expectElement(app, '.not-present', {message});
+
+  assert.ok(!result.ok, 'pre cond: fails');
+  assert.equal(result.message, message, 'custom message appears on expectElement fail');
+});
+
+test('expectElement passes with a custom message', function(assert) {
+  let find = function(){
+    return [makeElement('div', {class:'the-div'})];
+  };
+
+  let app = makeApp(find);
+  let message = 'custom test label message';
+
+  let result = expectElement(app, '.is-present', {message});
+  // debugger;
+  assert.ok(result.ok, 'pre cond: passes');
+
+  assert.equal(result.message, message, 'custom message appears on expectElement pass');
+});
