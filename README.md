@@ -40,13 +40,15 @@ If `options.contains` is set, the expectation will only pass if there
 are exactly count instances of the selector that include the string
 value of `options.contains`.
 
+If `options.message` is set, the message will be displayed in the test results instead of the default,  `Found 0 of '.selector' but expected 1.`
+
 ### `expectNoElement`
 
 `expectNoElement(selector, options)`
 
 A convenience for `expectElement` when the count is 0.
 
-`options` can include a `contains` key.
+`options` can include a `contains` and/or a `message` key.
 
 ## Mocha
 
