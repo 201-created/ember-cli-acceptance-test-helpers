@@ -1,36 +1,17 @@
 import { module } from 'qunit';
 import { test } from 'ember-qunit';
 import expectElement from '../helpers/201-created/raw/expect-element';
+import {
+  makeElement,
+  makeElements,
+  makeApp
+} from '../helpers/element-helpers';
 
 module('Unit - expectElement');
 
 test('expectElement exists', function(assert) {
   assert.ok(expectElement, 'it exists');
 });
-
-function makeElement(elementType, options){
-  var el = $(document.createElement(elementType));
-  if (options.class) { el.addClass('class', options.class); }
-  if (options.text)  { el.text(options.text); }
-
-  return el.get(0);
-}
-
-function makeElements(elementType, options, count){
-  var els = [];
-  for (var i = 0; i < count; i++) {
-    els.push(makeElement(elementType, options));
-  }
-
-  return $(els);
-}
-
-function makeApp(findFn){
-  return {
-    testHelpers: { find: findFn },
-    $: $
-  };
-}
 
 test('passes when the element is found by app.testHelpers.find', function(assert) {
   var find = function(){
@@ -135,10 +116,10 @@ test('can be passed a number and option `contains`', function(assert) {
 
 test('option `contains` filters the elements', function(assert) {
   var find = function(){
-    return $([
+    return [
       makeElement('div', {class:'the-div'}),
       makeElement('div', {class:'the-div', text: 'foo bar'})
-    ]);
+    ];
   };
 
   var app = makeApp(find);
@@ -152,4 +133,35 @@ test('option `contains` filters the elements', function(assert) {
 
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 2 of .the-div but 0/1 containing "not found"');
+});
+
+test('expectElement fails with a custom message', function(assert) {
+  let app = makeApp(() => []);
+  let message = 'custom test label message';
+  let result = expectElement(app, '.is-not-present', {message});
+
+  assert.ok(!result.ok, 'pre cond: fails');
+  assert.equal(result.message, message, 'custom message appears on expectElement fail');
+});
+
+test('expectElement passes with a custom message', function(assert) {
+  let find = function(){
+    return [makeElement('div', {class:'the-div'})];
+  };
+
+  let app = makeApp(find);
+  let message = 'custom test label message';
+  let result = expectElement(app, '.is-present', {message});
+
+  assert.ok(result.ok, 'pre cond: passes');
+  assert.equal(result.message, message, 'custom message appears on expectElement pass');
+});
+
+test('expectElement with contains fails with a custom message', function(assert) {
+  let app = makeApp(() => []);
+  let message = 'custom test label message';
+  let result = expectElement(app, '.is-not-present', {contains: 'foo', message});
+
+  assert.ok(!result.ok, 'pre cond: fails');
+  assert.equal(result.message, message, 'custom message appears on expectElement fail');
 });

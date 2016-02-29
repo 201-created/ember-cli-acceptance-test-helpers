@@ -4,48 +4,65 @@ function filterElements(elements, text){
   return elements.filter(':contains(' + text + ')');
 }
 
+function buildMessage(selector, { filteredCount, selectorCount, ok }, { contains, message, count }) {
+  if (!message) {
+    if (contains) {
+      message = 'Found ' + filteredCount + ' of ' + selector +
+        ' containing "' + contains + '"';
+
+      if (!ok) {
+        if (selectorCount === filteredCount) {
+          message = 'Found ' + filteredCount + ' of ' + selector +
+            ' containing "' + contains + '" but expected ' + count;
+        } else {
+          message = 'Found ' + selectorCount + ' of ' + selector +
+            ' but ' + filteredCount + '/' + count + ' containing "' + contains + '"';
+        }
+      }
+    }
+    else {
+      message = 'Found ' + selectorCount + ' of ' + selector;
+
+      if (!ok) {
+        message += ' but expected ' + count;
+      }
+    }
+  }
+  return message;
+}
+
 export default function(app, selector, count, options){
   if (typeof count === 'object') {
     options = count;
   }
 
   if (!options) { options = {}; }
-  
+
   if (typeof count === 'number') {
     options.count = count;
   }
 
-  count = options.count === undefined ? 1 : options.count;
+  if (options.count === undefined) {
+    options.count = 1;
+  }
 
   var elements = app.testHelpers.find(selector, getContext());
 
   var result = {};
 
+  result.selectorCount = elements.length;
+
   if (options.contains) {
-    var text = options.contains;
-    var filtered = filterElements(elements, text);
+    let filtered = filterElements(elements, options.contains);
 
-    result.ok = filtered.length === count;
+    result.ok = filtered.length === options.count;
+    result.filteredCount = filtered.length;
 
-    result.message = 'Found ' + filtered.length + ' of ' + selector +
-      ' containing "' + text + '"';
-
-    if (!result.ok) {
-      if (elements.length === filtered.length) {
-        result.message = 'Found ' + filtered.length + ' of ' + selector +
-          ' containing "' + text + '" but expected ' + count;
-      } else {
-        result.message = 'Found ' + elements.length + ' of ' + selector +
-          ' but ' + filtered.length + '/' + count + ' containing "' + text + '"';
-      }
-    }
   } else {
-    result.message = 'Found ' + elements.length + ' of ' + selector;
-    result.ok = elements.length === count;
-    if (!result.ok) {
-      result.message += ' but expected ' + count;
-    }
+    result.ok = elements.length === options.count;
   }
+
+  result.message = buildMessage(selector, result, options);
 
   return result;
 }
