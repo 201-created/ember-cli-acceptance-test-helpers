@@ -2,6 +2,9 @@
 
 ## Master
 
+## 0.4.1
+  * Change `expectElement` and `expectNoElement` to accept a `message` key in the `options` hash (see [26](https://github.com/201-created/ember-cli-acceptance-test-helpers/pull/26).
+
 ## 0.4.0
 
  * Change `expectComponent` to use a container to support usage in integration tests (see [23](https://github.com/201-created/ember-cli-acceptance-test-helpers/pull/23) and [22](https://github.com/201-created/ember-cli-acceptance-test-helpers/issues/22) )
