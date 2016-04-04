@@ -2,6 +2,9 @@
 
 ## Master
 
+## 0.4.2
+  * Fix bug in `clickComponent` (see [30](https://github.com/201-created/ember-cli-acceptance-test-helpers/issues/30))
+
 ## 0.4.1
   * Change `expectElement` and `expectNoElement` to accept a `message` key in the `options` hash (see [26](https://github.com/201-created/ember-cli-acceptance-test-helpers/pull/26).
 
