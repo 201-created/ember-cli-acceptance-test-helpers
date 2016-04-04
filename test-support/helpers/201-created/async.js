@@ -2,7 +2,12 @@ import {lookupComponent} from './utils/lookup';
 import findComponentElements from './utils/find-component-elements';
 
 export function clickComponent(app, expectation, selector){
-  var container = app.container;
+  var container;
+  if (app.__container__) {
+    container = app.__container__;
+  } else {
+    container = app;
+  }
   var Component = lookupComponent(container, expectation);
 
   if (!Component) {

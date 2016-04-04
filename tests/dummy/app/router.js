@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('another');
   this.route('two-components');
+  this.route('click-component');
   this.route('compound-component');
   this.route('contains');
   this.resource('compound-route-outer', function() {
