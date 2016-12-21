@@ -8,7 +8,7 @@ A set of useful helper for ember-cli acceptance tests. Includes
 
 ### `expectComponent`
 
-`expectComponent(componentName, count, options)`
+`expectComponent(assert, componentName, count, options)`
 
 Passes when the component exists in the container and is in the DOM.
 
@@ -23,14 +23,14 @@ Note that `ember-qunit` version 0.4.7 or greater is required to make the compone
 
 ### `clickComponent`
 
-`clickComponent(componentName, selector)`
+`clickComponent(assert, componentName, selector)`
 
 Clicks the CSS selector inside the component(s) of type `componentName`
 in the DOM.
 
 ### `expectElement`
 
-`expectElement(selector, count, options)`
+`expectElement(assert, selector, count, options)`
 
 Expect that `count` instances of the selector are in the DOM.
 
@@ -44,7 +44,7 @@ If `options.message` is set, the message will be displayed in the test results i
 
 ### `expectNoElement`
 
-`expectNoElement(selector, options)`
+`expectNoElement(assert, selector, options)`
 
 A convenience for `expectElement` when the count is 0.
 
@@ -88,13 +88,13 @@ The generator makes changes to files assuming the structure of them has not chan
  * update the version in `package.json`
  * `npm publish`
  * Visit https://www.npmjs.com/package/ember-cli-acceptance-test-helpers and confirm the correct version number
- 
+
 If you have errors running `npm adduser`, you may have previously set your npm registry to a read-only or non-standard URL.  
  * Run this command to check `npm config get registry`  
- * Run this command to reset:`npm config set registry https://registry.npmjs.org/` 
- 
+ * Run this command to reset:`npm config set registry https://registry.npmjs.org/`
+
 [more docs](https://docs.npmjs.com/getting-started/publishing-npm-packages)
- 
+
 #### To do
 
  * clickLink

@@ -1,10 +1,10 @@
 import {getContext} from '../utils/helper-context';
 import expectElement from './expect-element';
 
-export default function(app, selector, options, message){
+export default function(app, assert, selector, options, message){
   if (!options) {
     options = {};
   }
 
-  return expectElement(app, selector, 0, options);
+  return expectElement(app, assert, selector, 0, options);
 }

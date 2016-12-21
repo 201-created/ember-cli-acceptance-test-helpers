@@ -30,7 +30,7 @@ test('clickComponent() API test', function(assert) {
   let afterClickText  = 'Good Job';
 
   andThen(function() {
-    expectComponent(app, 'click-component', 1);
+    expectComponent(app, assert, 'click-component', 1);
     assert.equal(find('.txt').text().trim(), beforeClickText);
     clickComponent(app, 'click-component', '.btn');
   });

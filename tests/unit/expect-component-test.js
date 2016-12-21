@@ -30,8 +30,7 @@ test('fails if the component is not in the container', function(assert) {
 
   var app = makeApp(findFn, 'component:date-picker', DatePicker);
 
-  var result = expectComponent(app, 'non-existent');
+  var result = expectComponent(app, assert, 'non-existent');
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'No component called non-existent was found in the container');
 });
-

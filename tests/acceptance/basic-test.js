@@ -27,18 +27,18 @@ test('visiting /, expectComponent', function(assert) {
   visit('/');
 
   andThen(function() {
-    App.testHelpers.expectComponent('simple-component');
+    App.testHelpers.expectComponent(assert, 'simple-component');
 
-    var result = expectComponent(App, 'another-component');
+    var result = expectComponent(App, assert, 'another-component');
     assert.ok(!result.ok, 'fails on invisible component');
 
     click('.link');
   });
 
   andThen(function() {
-    App.testHelpers.expectComponent('another-component');
+    App.testHelpers.expectComponent(assert, 'another-component');
 
-    var result = expectComponent(App, 'simple-component');
+    var result = expectComponent(App, assert, 'simple-component');
     assert.ok(!result.ok, 'fails on invisible component');
   });
 });
@@ -47,7 +47,7 @@ test('visiting /, expectElement', function(assert) {
   visit('/');
 
   andThen(function() {
-    App.testHelpers.expectElement('.some-div');
+    App.testHelpers.expectElement(assert, '.some-div');
   });
 });
 
@@ -55,8 +55,8 @@ test('visiting /, expectNoElement', function(assert) {
   visit('/');
 
   andThen(function() {
-    App.testHelpers.expectNoElement('.missing-div');
-    App.testHelpers.expectNoElement('h2', {contains: 'text that is not there'});
+    App.testHelpers.expectNoElement(assert, '.missing-div');
+    App.testHelpers.expectNoElement(assert, 'h2', {contains: 'text that is not there'});
   });
 });
 
@@ -65,10 +65,10 @@ test('visiting /, withinElement', function(assert) {
 
   andThen(function() {
     App.testHelpers.withinElement('.some-div', function(){
-      App.testHelpers.expectElement('.inner-div');
-      App.testHelpers.expectNoElement('.outer-div');
+      App.testHelpers.expectElement(assert, '.inner-div');
+      App.testHelpers.expectNoElement(assert, '.outer-div');
     });
 
-    App.testHelpers.expectElement('h2');
+    App.testHelpers.expectElement(assert, 'h2');
   });
 });
