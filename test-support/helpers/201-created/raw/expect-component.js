@@ -1,5 +1,8 @@
 import {lookupComponent} from '../utils/lookup';
 import eachView from '../utils/each-view';
+import Ember from 'ember';
+
+const { isPresent } = Ember;
 
 var K = function(){};
 
@@ -36,12 +39,12 @@ export default function(appOrContainer, expectation, count, options, customMessa
     }
   });
 
-  var message = count ? 
-                'Expected to find '+count+' components of type ' + expectation + '. Found: ' + found : 
+  var message = count ?
+                'Expected to find '+count+' components of type ' + expectation + '. Found: ' + found :
                 'Expected to find at least one component: ' + expectation;
 
   var result = {
-    ok: count ? found === count : found > 0, // if count specified then we must have exactly that many, otherwise we want at least 1
+    ok: isPresent(count) ? found === count : found > 0, // if count specified then we must have exactly that many, otherwise we want at least 1
     message: customMessage || message
   };
 
