@@ -145,4 +145,13 @@ test('expectComponent gives component missing error when component is not presen
   });
 });
 
+test('expectComponent supports expecting zero component instances', function(assert) {
+  visit('/');
+
+  andThen(function() {
+    var result = expectComponent(App, 'another-component', 0);
+    assert.ok(result.ok, "expected a failure");
+  });
+});
+
 // 'fails is the component is found but destroyed'
