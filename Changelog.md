@@ -2,6 +2,9 @@
 
 ## Master
 
+## 0.4.3
+  * Support expecting zero component instances via `expectComponent('my-component', 0)` see [35](https://github.com/201-created/ember-cli-acceptance-test-helpers/pull/35)
+
 ## 0.4.2
   * Fix bug in `clickComponent` (see [30](https://github.com/201-created/ember-cli-acceptance-test-helpers/issues/30))
 
