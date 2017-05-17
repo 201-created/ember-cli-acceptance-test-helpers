@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import expectComponent from '../helpers/201-created/raw/expect-component';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';

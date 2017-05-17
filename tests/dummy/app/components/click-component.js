@@ -6,10 +6,10 @@ export default Ember.Component.extend({
   classNames: ['click-component'],
   text: 'click me',
   didClick: false,
-  
+
   actions: {
-	  doClick() {
-	    this.toggleProperty('didClick');
-	  }
+    doClick() {
+      this.toggleProperty('didClick');
+    }
   }
 });

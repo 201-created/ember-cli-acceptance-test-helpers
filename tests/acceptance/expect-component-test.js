@@ -1,43 +1,32 @@
-import Ember from 'ember';
-import startApp from '../helpers/start-app';
-import expectComponent from '../helpers/201-created/raw/expect-component';
-import { module } from 'qunit';
-import { test } from 'ember-qunit';
+import { test } from 'qunit';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
+import expectComponentRaw from '../helpers/201-created/raw/expect-component';
 
-var App;
-
-module('Acceptance: ExpectComponent', {
-  setup: function() {
-    App = startApp();
-  },
-  teardown: function() {
-    Ember.run(App, 'destroy');
-  }
-});
+moduleForAcceptance('Acceptance | ExpectComponent');
 
 test('expectComponent passes when component is present', function(assert) {
   visit('/');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component');
-    assert.ok(result.ok, "expected a pass");
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component');
+    assert.ok(result.ok, 'expected a pass');
   });
 });
 
 test('expectComponent fails when component is not present', function(assert) {
   visit('/');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'another-component');
-    assert.ok(!result.ok, "expected a failure");
+  andThen(() => {
+    let result = expectComponentRaw(this.application, assert, 'another-component');
+    assert.ok(!result.ok, 'expected a failure');
   });
 });
 
 test('expectComponent error message says component not found when component is not present with no count', function(assert) {
   visit('/');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'another-component');
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'another-component');
     assert.ok(result.message.indexOf('another-component') > -1, 'expected message to contain component name');
     assert.ok(result.message.indexOf('Expected to find at least one component') > -1);
   });
@@ -46,8 +35,8 @@ test('expectComponent error message says component not found when component is n
 test('expectComponent fails when component is present twice with count of 1', function(assert) {
   visit('/two-components');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component', 1);
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component', 1);
     assert.ok(!result.ok, "expected a failure");
   });
 });
@@ -55,8 +44,8 @@ test('expectComponent fails when component is present twice with count of 1', fu
 test('expectComponent error message gives count and found when component is present twice with count of 1', function(assert) {
   visit('/two-components');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component', 1);
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component', 1);
     assert.ok(result.message.indexOf('simple-component') > -1, 'expected message to contain component name');
     assert.ok(result.message.indexOf('Expected to find 1 components') > -1, 'expected message to contain "Expected to find 1 components"');
     var suffix = 'Found: 2';
@@ -67,8 +56,8 @@ test('expectComponent error message gives count and found when component is pres
 test('expectComponent passes when component is present twice with count of 2', function(assert) {
   visit('/two-components');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component', 2);
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component', 2);
     assert.ok(result.ok, "expected a pass");
   });
 });
@@ -76,8 +65,8 @@ test('expectComponent passes when component is present twice with count of 2', f
 test('expectComponent fails when component is present twice with count of 3', function(assert) {
   visit('/two-components');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component', 3);
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component', 3);
     assert.ok(!result.ok, "expected a failure");
   });
 });
@@ -85,8 +74,8 @@ test('expectComponent fails when component is present twice with count of 3', fu
 test('expectComponent passes when component is present twice but count unspecified', function(assert) {
   visit('/two-components');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component');
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component');
     assert.ok(result.ok, "expected a pass");
   });
 });
@@ -94,8 +83,8 @@ test('expectComponent passes when component is present twice but count unspecifi
 test('expectComponent passes when component is present twice and count null', function(assert) {
   visit('/two-components');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component', null);
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component', null);
     assert.ok(result.ok, "expected a pass");
   });
 });
@@ -103,8 +92,8 @@ test('expectComponent passes when component is present twice and count null', fu
 test('expectComponent passes when component is present inside a compound component', function(assert) {
   visit('/compound-component');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component');
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component');
     assert.ok(result.ok, "expected a pass");
   });
 });
@@ -112,8 +101,8 @@ test('expectComponent passes when component is present inside a compound compone
 test('expectComponent passes when component is present inside a nested route', function(assert) {
   visit('/compound-route-outer/compound-route-inner');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component');
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component');
     assert.ok(result.ok, "expected a pass");
   });
 });
@@ -121,8 +110,8 @@ test('expectComponent passes when component is present inside a nested route', f
 test('expectComponent passes when component is present and text matches contains option', function(assert) {
   visit('/contains');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component', null, {contains: 'text is present'});
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component', null, {contains: 'text is present'});
     assert.ok(result.ok, "expected a pass");
   });
 });
@@ -130,8 +119,8 @@ test('expectComponent passes when component is present and text matches contains
 test('expectComponent passes when component is present and text does not match contains option', function(assert) {
   visit('/contains');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'simple-component', null, {contains: 'penguins are present'});
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'simple-component', null, {contains: 'penguins are present'});
     assert.ok(!result.ok, "expected a failure");
   });
 });
@@ -139,8 +128,8 @@ test('expectComponent passes when component is present and text does not match c
 test('expectComponent gives component missing error when component is not present with contains option provided', function(assert) {
   visit('/contains');
 
-  andThen(function() {
-    var result = expectComponent(App, assert, 'another-component', null, {contains: 'penguins are present'});
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'another-component', null, {contains: 'penguins are present'});
     assert.ok(result.message.indexOf('Expected to find at least one component') > -1, 'Should get \'Expected to find component\' message');
   });
 });
@@ -148,8 +137,8 @@ test('expectComponent gives component missing error when component is not presen
 test('expectComponent supports expecting zero component instances', function(assert) {
   visit('/');
 
-  andThen(function() {
-    var result = expectComponent(App, 'another-component', 0);
+  andThen(() => {
+    var result = expectComponentRaw(this.application, assert, 'another-component', 0);
     assert.ok(result.ok, "expected a failure");
   });
 });

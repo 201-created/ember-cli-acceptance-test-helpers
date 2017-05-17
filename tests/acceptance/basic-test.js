@@ -1,74 +1,69 @@
-import Ember from 'ember';
-import startApp from '../helpers/start-app';
-import expectComponent from '../helpers/201-created/raw/expect-component';
-import { module } from 'qunit';
-import { test } from 'ember-qunit';
+import { test } from 'qunit';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
+import expectComponentRaw from '../helpers/201-created/raw/expect-component';
+/* global expectComponent, expectElement, expectNoElement, withinElement */
 
-var App;
-
-module('Acceptance: Basic', {
-  setup: function() {
-    App = startApp();
-  },
-  teardown: function() {
-    Ember.run(App, 'destroy');
-  }
-});
+moduleForAcceptance('Acceptance | Basic');
 
 test('visiting /', function(assert) {
+  assert.expect(1);
   visit('/');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentPath(), 'index');
   });
 });
 
 test('visiting /, expectComponent', function(assert) {
+  assert.expect(4);
   visit('/');
 
-  andThen(function() {
-    App.testHelpers.expectComponent(assert, 'simple-component');
+  andThen(() => {
+    expectComponent(assert, 'simple-component');
 
-    var result = expectComponent(App, assert, 'another-component');
+    var result = expectComponentRaw(this.application, assert, 'another-component');
     assert.ok(!result.ok, 'fails on invisible component');
 
     click('.link');
-  });
 
-  andThen(function() {
-    App.testHelpers.expectComponent(assert, 'another-component');
+    andThen(() => {
+      expectComponent(assert, 'another-component');
 
-    var result = expectComponent(App, assert, 'simple-component');
-    assert.ok(!result.ok, 'fails on invisible component');
+      var result = expectComponentRaw(this.application, assert, 'simple-component');
+      assert.ok(!result.ok, 'fails on invisible component');
+    });
   });
 });
 
 test('visiting /, expectElement', function(assert) {
+  assert.expect(1);
   visit('/');
 
-  andThen(function() {
-    App.testHelpers.expectElement(assert, '.some-div');
+  andThen(() => {
+    expectElement(assert, '.some-div');
   });
 });
 
 test('visiting /, expectNoElement', function(assert) {
+  assert.expect(2);
   visit('/');
 
-  andThen(function() {
-    App.testHelpers.expectNoElement(assert, '.missing-div');
-    App.testHelpers.expectNoElement(assert, 'h2', {contains: 'text that is not there'});
+  andThen(() => {
+    expectNoElement(assert, '.missing-div');
+    expectNoElement(assert, 'h2', {contains: 'text that is not there'});
   });
 });
 
 test('visiting /, withinElement', function(assert) {
+  assert.expect(3);
   visit('/');
 
-  andThen(function() {
-    App.testHelpers.withinElement('.some-div', function(){
-      App.testHelpers.expectElement(assert, '.inner-div');
-      App.testHelpers.expectNoElement(assert, '.outer-div');
+  andThen(() => {
+    withinElement('.some-div', function(){
+      expectElement(assert, '.inner-div');
+      expectNoElement(assert, '.outer-div');
     });
 
-    App.testHelpers.expectElement(assert, 'h2');
+    expectElement(assert, 'h2');
   });
 });

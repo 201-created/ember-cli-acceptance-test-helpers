@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { module } from 'qunit';
 import { test } from 'ember-qunit';
 import expectComponent from '../helpers/201-created/raw/expect-component';
@@ -20,7 +21,7 @@ function makeApp(findFn, componentName, componentKlass){
   return {
     testHelpers: { find: findFn },
     __container__: makeContainer(componentName, componentKlass),
-    $: $
+    $: Ember.$
   };
 }
 
