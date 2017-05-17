@@ -1,5 +1,8 @@
+import Ember from 'ember';
 import {lookupComponent} from './utils/lookup';
 import findComponentElements from './utils/find-component-elements';
+
+const { assert } = Ember;
 
 export function clickComponent(app, expectation, selector){
   var container;
@@ -11,7 +14,7 @@ export function clickComponent(app, expectation, selector){
   var Component = lookupComponent(container, expectation);
 
   if (!Component) {
-    ok(false, 'No Component called ' + expectation + ' exists.');
+    assert('No Component called ' + expectation + ' exists.');
     return;
   }
 

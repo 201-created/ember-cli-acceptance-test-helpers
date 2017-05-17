@@ -11,7 +11,7 @@ test('it exists', function(assert) {
 
 function makeContainer(key, value){
   return {
-    lookupFactory: function(_key){
+    factoryFor: function(_key){
       if (key === _key) { return value; }
     }
   };

@@ -7,7 +7,7 @@ const { isPresent } = Ember;
 var K = function(){};
 
 export default function(appOrContainer, assert, expectation, count, options, customMessage){
-  var container;
+  let container;
   if (appOrContainer.__container__) {
     container = appOrContainer.__container__;
   } else {
