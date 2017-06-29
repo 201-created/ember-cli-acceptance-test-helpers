@@ -1,16 +1,16 @@
 import { module } from 'qunit';
 import { test } from 'ember-qunit';
-import expectElement from '../helpers/201-created/raw/expect-element';
+import hasElement from '../helpers/201-created/raw/expect-element';
 import {
   makeElement,
   makeElements,
   makeApp
 } from '../helpers/element-helpers';
 
-module('Unit - expectElement');
+module('Unit - hasElement');
 
-test('expectElement exists', function(assert) {
-  assert.ok(expectElement, 'it exists');
+test('hasElement exists', function(assert) {
+  assert.ok(hasElement, 'it exists');
 });
 
 test('passes when the element is found by app.testHelpers.find', function(assert) {
@@ -20,7 +20,7 @@ test('passes when the element is found by app.testHelpers.find', function(assert
 
   var app = makeApp(find);
 
-  var result = expectElement(app, assert, '.the-div');
+  var result = hasElement(app, assert, '.the-div');
 
   assert.ok(result.ok, 'passes');
   assert.equal(result.message, 'Found 1 of .the-div');
@@ -33,7 +33,7 @@ test('fails when the element is not found by app.testHelpers.find', function(ass
 
   var app = makeApp(find);
 
-  var result = expectElement(app, assert, '.the-div');
+  var result = hasElement(app, assert, '.the-div');
 
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 0 of .the-div but expected 1');
@@ -49,7 +49,7 @@ test('calls app.testHelpers.find with the given selector', function(assert) {
 
   var app = makeApp(find);
 
-  expectElement(app, assert, '.the-div');
+  hasElement(app, assert, '.the-div');
 });
 
 test('can be passed a number', function(assert) {
@@ -59,19 +59,19 @@ test('can be passed a number', function(assert) {
 
   var app = makeApp(find);
 
-  var result = expectElement(app, assert, '.the-div', 2);
+  var result = hasElement(app, assert, '.the-div', 2);
 
   assert.ok(result.ok, 'passes');
   assert.equal(result.message, 'Found 2 of .the-div', 'correct success message');
 
   // default: 1
-  result = expectElement(app, assert, '.the-div');
+  result = hasElement(app, assert, '.the-div');
 
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 2 of .the-div but expected 1',
         'correct failure message');
 
-  result = expectElement(app, assert, '.the-div', 3);
+  result = hasElement(app, assert, '.the-div', 3);
 
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 2 of .the-div but expected 3',
@@ -85,12 +85,12 @@ test('takes option `contains`', function(assert) {
 
   var app = makeApp(find);
 
-  var result = expectElement(app, assert, '.the-div', {contains:'foo'});
+  var result = hasElement(app, assert, '.the-div', {contains:'foo'});
 
   assert.ok(result.ok, 'passes');
   assert.equal(result.message, 'Found 1 of .the-div containing "foo"');
 
-  result = expectElement(app, assert, '.the-div', {contains:'not found'});
+  result = hasElement(app, assert, '.the-div', {contains:'not found'});
 
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 1 of .the-div but 0/1 containing "not found"');
@@ -103,12 +103,12 @@ test('can be passed a number and option `contains`', function(assert) {
 
   var app = makeApp(find);
 
-  var result = expectElement(app, assert, '.the-div', 3, {contains:'foo'});
+  var result = hasElement(app, assert, '.the-div', 3, {contains:'foo'});
 
   assert.ok(result.ok, 'passes');
   assert.equal(result.message, 'Found 3 of .the-div containing "foo"');
 
-  result = expectElement(app, assert, '.the-div', 3, {contains:'not found'});
+  result = hasElement(app, assert, '.the-div', 3, {contains:'not found'});
 
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 3 of .the-div but 0/3 containing "not found"');
@@ -124,44 +124,44 @@ test('option `contains` filters the elements', function(assert) {
 
   var app = makeApp(find);
 
-  var result = expectElement(app, assert, '.the-div', {contains:'foo'});
+  var result = hasElement(app, assert, '.the-div', {contains:'foo'});
 
   assert.ok(result.ok, 'passes');
   assert.equal(result.message, 'Found 1 of .the-div containing "foo"');
 
-  result = expectElement(app, assert, '.the-div', {contains:'not found'});
+  result = hasElement(app, assert, '.the-div', {contains:'not found'});
 
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'Found 2 of .the-div but 0/1 containing "not found"');
 });
 
-test('expectElement fails with a custom message', function(assert) {
+test('hasElement fails with a custom message', function(assert) {
   let app = makeApp(() => []);
   let message = 'custom test label message';
-  let result = expectElement(app, assert, '.is-not-present', {message});
+  let result = hasElement(app, assert, '.is-not-present', {message});
 
   assert.ok(!result.ok, 'pre cond: fails');
-  assert.equal(result.message, message, 'custom message appears on expectElement fail');
+  assert.equal(result.message, message, 'custom message appears on hasElement fail');
 });
 
-test('expectElement passes with a custom message', function(assert) {
+test('hasElement passes with a custom message', function(assert) {
   let find = function(){
     return [makeElement('div', {class:'the-div'})];
   };
 
   let app = makeApp(find);
   let message = 'custom test label message';
-  let result = expectElement(app, assert, '.is-present', {message});
+  let result = hasElement(app, assert, '.is-present', {message});
 
   assert.ok(result.ok, 'pre cond: passes');
-  assert.equal(result.message, message, 'custom message appears on expectElement pass');
+  assert.equal(result.message, message, 'custom message appears on hasElement pass');
 });
 
-test('expectElement with contains fails with a custom message', function(assert) {
+test('hasElement with contains fails with a custom message', function(assert) {
   let app = makeApp(() => []);
   let message = 'custom test label message';
-  let result = expectElement(app, assert, '.is-not-present', {contains: 'foo', message});
+  let result = hasElement(app, assert, '.is-not-present', {contains: 'foo', message});
 
   assert.ok(!result.ok, 'pre cond: fails');
-  assert.equal(result.message, message, 'custom message appears on expectElement fail');
+  assert.equal(result.message, message, 'custom message appears on hasElement fail');
 });

@@ -1,6 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
-/* global clickComponent, expectComponent */
+/* global clickComponent, hasComponent */
 
 moduleForAcceptance('Acceptance | click component');
 
@@ -12,7 +12,7 @@ test('clickComponent() API test', function(assert) {
   let afterClickText  = 'Good Job';
 
   andThen(() => {
-    expectComponent(assert, 'click-component', 1);
+    hasComponent(assert, 'click-component', 1);
     assert.equal(find('.txt').text().trim(), beforeClickText);
     clickComponent('click-component', '.btn');
 

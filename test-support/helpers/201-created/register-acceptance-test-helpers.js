@@ -9,21 +9,21 @@ import withinElement from './utils/within-element';
 import { clickComponent } from './async';
 
 export default function(assert) {
-  Ember.Test.registerHelper('expectElement',   wrappedExpectElement);
-  Ember.Test.registerHelper('expectNoElement', wrappedExpectNoElement);
-  Ember.Test.registerHelper('expectComponent', wrappedExpectComponent);
+  Ember.Test.registerHelper('hasElement',   wrappedExpectElement);
+  Ember.Test.registerHelper('hasNoElement', wrappedExpectNoElement);
+  Ember.Test.registerHelper('hasComponent', wrappedExpectComponent);
 
   Ember.Test.registerHelper('withinElement', withinElement);
 
   Ember.Test.registerAsyncHelper('clickComponent', clickComponent);
 
   assert.hasElement = function () {
-    return expectElement(this, ...arguments);
+    return hasElement(this, ...arguments);
   };
   assert.hasNoElement = function () {
-    return expectNoElement(this, ...arguments);
+    return hasNoElement(this, ...arguments);
   };
   assert.hasComponent = function () {
-    return expectComponent(this, ...arguments);
+    return hasComponent(this, ...arguments);
   };
 }

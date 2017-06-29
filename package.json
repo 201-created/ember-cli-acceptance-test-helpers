@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-acceptance-test-helpers",
   "main": "index.js",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "keywords": [
     "ember-addon"
   ],

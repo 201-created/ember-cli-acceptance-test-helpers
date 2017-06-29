@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
-import expectComponentRaw from '../helpers/201-created/raw/expect-component';
-/* global expectComponent, expectElement, expectNoElement, withinElement */
+import hasComponentRaw from '../helpers/201-created/raw/expect-component';
+/* global hasComponent, hasElement, hasNoElement, withinElement */
 
 moduleForAcceptance('Acceptance | Basic');
 
@@ -14,43 +14,43 @@ test('visiting /', function(assert) {
   });
 });
 
-test('visiting /, expectComponent', function(assert) {
+test('visiting /, hasComponent', function(assert) {
   assert.expect(5);
   visit('/');
 
   andThen(() => {
-    expectComponent(assert, 'simple-component');
+    hasComponent(assert, 'simple-component');
     assert.hasComponent('simple-component')
 
-    var result = expectComponentRaw(this.application, assert, 'another-component');
+    var result = hasComponentRaw(this.application, assert, 'another-component');
     assert.ok(!result.ok, 'fails on invisible component');
 
     click('.link');
 
     andThen(() => {
-      expectComponent(assert, 'another-component');
-      var result = expectComponentRaw(this.application, assert, 'simple-component');
+      hasComponent(assert, 'another-component');
+      var result = hasComponentRaw(this.application, assert, 'simple-component');
       assert.ok(!result.ok, 'fails on invisible component');
     });
   });
 });
 
-test('visiting /, expectElement', function(assert) {
+test('visiting /, hasElement', function(assert) {
   assert.expect(1);
   visit('/');
 
   andThen(() => {
-    expectElement(assert, '.some-div');
+    hasElement(assert, '.some-div');
   });
 });
 
-test('visiting /, expectNoElement', function(assert) {
+test('visiting /, hasNoElement', function(assert) {
   assert.expect(3);
   visit('/');
 
   andThen(() => {
-    expectNoElement(assert, '.missing-div');
-    expectNoElement(assert, 'h2', {contains: 'text that is not there'});
+    hasNoElement(assert, '.missing-div');
+    hasNoElement(assert, 'h2', {contains: 'text that is not there'});
     assert.hasNoElement('h2', {contains: 'text that is not there'})
   });
 });
@@ -62,11 +62,11 @@ test('visiting /, withinElement', function(assert) {
 
   andThen(() => {
     withinElement('.some-div', function(){
-      expectElement(assert, '.inner-div');
+      hasElement(assert, '.inner-div');
       assert.hasElement('.inner-div');
-      expectNoElement(assert, '.outer-div');
+      hasNoElement(assert, '.outer-div');
     });
 
-    expectElement(assert, 'h2');
+    hasElement(assert, 'h2');
   });
 });

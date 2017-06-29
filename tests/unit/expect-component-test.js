@@ -1,12 +1,12 @@
 import Ember from 'ember';
 import { module } from 'qunit';
 import { test } from 'ember-qunit';
-import expectComponent from '../helpers/201-created/raw/expect-component';
+import hasComponent from '../helpers/201-created/raw/expect-component';
 
-module('Unit - expectComponent');
+module('Unit - hasComponent');
 
 test('it exists', function(assert) {
-  assert.ok(expectComponent, 'it exists');
+  assert.ok(hasComponent, 'it exists');
 });
 
 function makeContainer(key, value){
@@ -31,7 +31,7 @@ test('fails if the component is not in the container', function(assert) {
 
   var app = makeApp(findFn, 'component:date-picker', DatePicker);
 
-  var result = expectComponent(app, assert, 'non-existent');
+  var result = hasComponent(app, assert, 'non-existent');
   assert.ok(!result.ok, 'fails');
   assert.equal(result.message, 'No component called non-existent was found in the container');
 });

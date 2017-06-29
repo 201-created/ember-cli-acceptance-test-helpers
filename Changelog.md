@@ -2,6 +2,11 @@
 
 ## Master
 
+# 1.0.0
+
+  * changing API to support qUnit v2
+  * Since we are adding a custom assertion to QUnit (https://qunitjs.com/cookbook/#custom-assertions), we are changing the API to `hasX` instead of `expectX` since `assert.expectComponent` sounds weird.
+
 ## 0.4.3
   * Support expecting zero component instances via `expectComponent('my-component', 0)` see [35](https://github.com/201-created/ember-cli-acceptance-test-helpers/pull/35)
 
