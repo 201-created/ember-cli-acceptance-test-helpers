@@ -1,5 +1,5 @@
 import {getContext} from '../utils/helper-context';
-import hasElement from './expect-element';
+import hasElement from './has-element';
 
 export default function(app, assert, selector, options, message){
   if (!options) {

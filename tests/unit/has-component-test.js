@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { module } from 'qunit';
 import { test } from 'ember-qunit';
-import hasComponent from '../helpers/201-created/raw/expect-component';
+import hasComponent from '../helpers/201-created/raw/has-component';
 
 module('Unit - hasComponent');
 

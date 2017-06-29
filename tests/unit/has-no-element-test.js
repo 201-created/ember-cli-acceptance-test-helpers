@@ -1,6 +1,6 @@
 import { module} from 'qunit';
 import { test } from 'ember-qunit';
-import hasNoElement from '../helpers/201-created/raw/expect-no-element';
+import hasNoElement from '../helpers/201-created/raw/has-no-element';
 import {
   makeElement,
   makeElements,

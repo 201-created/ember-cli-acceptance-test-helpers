@@ -18,7 +18,7 @@ If an integer count is provided, there must be exactly that many components in t
 If `options.contains` is set, the expectation only passes if the
 component is in the DOM and contains the string from `options.contains`.
 
-`hasComponent` can also be used in component integration tests. See [expect-component-hbs-integration-test.js](https://github.com/201-created/ember-cli-acceptance-test-helpers/blob/master/tests/integration/expect-component-hbs-integration-test.js) for an example.
+`hasComponent` can also be used in component integration tests. See [has-component-hbs-integration-test.js](https://github.com/201-created/ember-cli-acceptance-test-helpers/blob/master/tests/integration/has-component-hbs-integration-test.js) for an example.
 Note that `ember-qunit` version 0.4.7 or greater is required to make the component integration tests work properly.
 
 ### `clickComponent`

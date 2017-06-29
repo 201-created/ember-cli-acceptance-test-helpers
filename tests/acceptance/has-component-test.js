@@ -1,6 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
-import hasComponentRaw from '../helpers/201-created/raw/expect-component';
+import hasComponentRaw from '../helpers/201-created/raw/has-component';
 
 moduleForAcceptance('Acceptance | ExpectComponent');
 
