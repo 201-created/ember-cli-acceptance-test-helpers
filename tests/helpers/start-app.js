@@ -8,8 +8,9 @@ export default function startApp(attrs) {
   attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
 
   return Ember.run(() => {
-    let application = Application.create(attributes);
-    registerAcceptanceTestHelpers();
+    const application = Application.create(attributes);
+    const assert = attributes.assert || window.QUnit.assert;
+    registerAcceptanceTestHelpers(assert);
     application.setupForTesting();
     application.injectTestHelpers();
     return application;

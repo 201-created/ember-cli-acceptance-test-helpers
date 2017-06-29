@@ -15,11 +15,12 @@ test('visiting /', function(assert) {
 });
 
 test('visiting /, expectComponent', function(assert) {
-  assert.expect(4);
+  assert.expect(5);
   visit('/');
 
   andThen(() => {
     expectComponent(assert, 'simple-component');
+    assert.hasComponent('simple-component')
 
     var result = expectComponentRaw(this.application, assert, 'another-component');
     assert.ok(!result.ok, 'fails on invisible component');
@@ -28,7 +29,6 @@ test('visiting /, expectComponent', function(assert) {
 
     andThen(() => {
       expectComponent(assert, 'another-component');
-
       var result = expectComponentRaw(this.application, assert, 'simple-component');
       assert.ok(!result.ok, 'fails on invisible component');
     });
@@ -45,22 +45,25 @@ test('visiting /, expectElement', function(assert) {
 });
 
 test('visiting /, expectNoElement', function(assert) {
-  assert.expect(2);
+  assert.expect(3);
   visit('/');
 
   andThen(() => {
     expectNoElement(assert, '.missing-div');
     expectNoElement(assert, 'h2', {contains: 'text that is not there'});
+    assert.hasNoElement('h2', {contains: 'text that is not there'})
   });
 });
 
 test('visiting /, withinElement', function(assert) {
-  assert.expect(3);
+  assert.expect(4);
+
   visit('/');
 
   andThen(() => {
     withinElement('.some-div', function(){
       expectElement(assert, '.inner-div');
+      assert.hasElement('.inner-div');
       expectNoElement(assert, '.outer-div');
     });
 

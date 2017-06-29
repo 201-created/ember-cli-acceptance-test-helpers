@@ -7,8 +7,8 @@ const { RSVP: { Promise } } = Ember;
 
 export default function(name, options = {}) {
   module(name, {
-    beforeEach() {
-      this.application = startApp();
+    beforeEach(assert) {
+      this.application = startApp({ assert });
 
       if (options.beforeEach) {
         return options.beforeEach.apply(this, arguments);
