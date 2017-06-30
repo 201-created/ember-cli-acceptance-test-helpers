@@ -6,9 +6,11 @@
 
 # dependencies
 /node_modules
+/.node_modules.ember-try
 /bower_components
 
 # misc
+*.ember-try
 /.sass-cache
 /connect.lock
 /coverage/*
