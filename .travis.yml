@@ -6,7 +6,9 @@ node_js:
 sudo: false
 
 cache:
+  yarn: true
   directories:
+    - node_modules
     - $HOME/.npm
     - $HOME/.cache # includes bowers cache
 
@@ -31,7 +33,7 @@ before_install:
   - phantomjs --version
 
 install:
-  - npm install
+  - yarn
   - bower install
 
 script:
