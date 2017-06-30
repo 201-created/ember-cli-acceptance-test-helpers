@@ -1,8 +1,9 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-var Router = Ember.Router.extend({
-  location: config.locationType
+const Router = Ember.Router.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
 Router.map(function() {
@@ -11,8 +12,8 @@ Router.map(function() {
   this.route('click-component');
   this.route('compound-component');
   this.route('contains');
-  this.resource('compound-route-outer', function() {
-  	this.resource('compound-route-inner');
+  this.route('compound-route-outer', function() {
+    this.route('compound-route-inner');
   });
 });
 

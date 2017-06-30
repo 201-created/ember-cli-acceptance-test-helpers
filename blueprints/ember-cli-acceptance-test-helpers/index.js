@@ -18,10 +18,10 @@ module.exports = {
 
             // .jshintrc file
             thirdFile          = 'tests/.jshintrc',
-            thirdText          = '    "expectComponent",' + EOL +
+            thirdText          = '    "hasComponent",' + EOL +
                                  '    "clickComponent",' + EOL +
-                                 '    "expectElement",' + EOL +
-                                 '    "expectNoElement",',
+                                 '    "hasElement",' + EOL +
+                                 '    "hasNoElement",',
             thirdLocationText  = '"predef": [' + EOL;
 
             // Import statement

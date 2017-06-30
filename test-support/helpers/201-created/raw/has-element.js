@@ -31,7 +31,7 @@ function buildMessage(selector, { filteredCount, selectorCount, ok }, { contains
   return message;
 }
 
-export default function(app, selector, count, options){
+export default function(app, assert, selector, count, options){
   if (typeof count === 'object') {
     options = count;
   }

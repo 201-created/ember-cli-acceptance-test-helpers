@@ -1,8 +1,7 @@
-/* global ok */
 export default function(helperFn){
-  return function(){
+  return function(app, assert){
     var result = helperFn.apply(null, arguments);
 
-    ok(result.ok, result.message);
+    assert.ok(result.ok, result.message);
   };
 }
