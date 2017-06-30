@@ -9,6 +9,7 @@ import withinElement from './utils/within-element';
 import { clickComponent } from './async';
 
 export default function(assert) {
+  Ember.assert('`assert` must be passed to registerAcceptanceTestHelpers(). see README.md', !!assert);
   Ember.Test.registerHelper('hasElement',   wrappedExpectElement);
   Ember.Test.registerHelper('hasNoElement', wrappedExpectNoElement);
   Ember.Test.registerHelper('hasComponent', wrappedExpectComponent);

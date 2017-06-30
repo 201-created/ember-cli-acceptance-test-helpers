@@ -13,7 +13,7 @@ module.exports = {
 
             // Execution of registration function
             secondFile         = 'tests/helpers/start-app.js',
-            secondText         = "    registerAcceptanceTestHelpers();",
+            secondText         = "    registerAcceptanceTestHelpers(attrs.assert || window.QUnit.assert);",
             secondLocationText = "App.setupForTesting();" + EOL,
 
             // .jshintrc file

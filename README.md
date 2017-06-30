@@ -67,8 +67,18 @@ The generator makes changes to files assuming the structure of them has not chan
   * Add this line to to the top of `start-app.js`:
     * `import registerAcceptanceTestHelpers from './201-created/register-acceptance-test-helpers';`
   * Register the test helpers:
-    * Add this line to `start-app.js` before `App.injectTestHelpers`
-    * `registerAcceptanceTestHelpers();`
+    * Update `start-app.js` to call `registerAcceptanceTestHelpers`, passing in the QUnit `assert` object, before `App.injectTestHelpers`.
+```js
+  startApp(attrs) {
+    ...
+    registerAcceptanceTestHelpers(attrs.assert || window.QUnit.assert);
+```
+    * Update `module-for-acceptance.js` in project to pass `assert` into `startApp` like this:
+```js
+beforeEach(assert) {
+  this.application = startApp({ assert });
+}
+```
   * Update your `tests/.jshintrc` file to notify it of the new globals
     that these helpers have added. Add the following lines to the
     `predef` array (after "currentRouteName"):
@@ -89,8 +99,8 @@ The generator makes changes to files assuming the structure of them has not chan
  * `npm publish`
  * Visit https://www.npmjs.com/package/ember-cli-acceptance-test-helpers and confirm the correct version number
 
-If you have errors running `npm adduser`, you may have previously set your npm registry to a read-only or non-standard URL.  
- * Run this command to check `npm config get registry`  
+If you have errors running `npm adduser`, you may have previously set your npm registry to a read-only or non-standard URL.
+ * Run this command to check `npm config get registry`
  * Run this command to reset:`npm config set registry https://registry.npmjs.org/`
 
 [more docs](https://docs.npmjs.com/getting-started/publishing-npm-packages)
