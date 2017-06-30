@@ -4,7 +4,24 @@
 A set of useful helpers for ember-cli acceptance tests. Includes
 `hasComponent`, `hasElement`, `hasNoElement`, and `clickComponent`.
 
-## Note
+## Upgrading to 1.0
+
+In 1.0, the helper function names have changed (replacing expect with has), and the invocation changed; they are now meant to be used as QUnit assertion methods rather than as globals.
+
+To upgrade from a pre 1.0 branch, do the following: Replace the following calls:
+ * `expectElement` -> `assert.hasElement`
+ * `expectNoElement` -> `assert.hasNoElement`
+ * `expectComponent` -> `assert.hasComponent`
+ 
+Then, open `start-app.js` and update the call to to pass in the QUnit assert object; change `registerAcceptanceTestHelpers();` to `registerAcceptanceTestHelpers(attrs.assert || window.QUnit.assert);`. You may also have to update the `module-for-acceptance.js` file to make `beforeEach` take `assert` as a first parameter, and pass `assert` into `startApp`, for example
+
+```js
+beforeEach(assert) {
+  this.application = startApp({ assert });
+}
+```
+ 
+## Helpers
 
 ### `hasComponent`
 
