@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/201-created/ember-cli-acceptance-test-helpers.svg?branch=master)](https://travis-ci.org/201-created/ember-cli-acceptance-test-helpers)
 
 A set of useful helper for ember-cli acceptance tests. Includes
-`hasComponent`, `hasElement`, and `clickComponent`.
+`hasComponent`, `hasElement`, `hasNoElement`, and `clickComponent`.
 
 ## Note
 
@@ -56,39 +56,34 @@ If you want to use this with [`ember-cli-mocha`](https://github.com/switchfly/em
 
 ## Setup
 
-  * Run `ember generate ember-cli-acceptance-test-helpers`
+  * Run `ember install ember-cli-acceptance-test-helpers`
   * Commit any file changes made if your application is under source code management
 
-The generator makes changes to files assuming the structure of them has not changed much from the default version created during the initial Ember application creation. If too many changes have been made you will need to manually make the changes below instead:
+After installing, ember-cil will run a generator. The generator makes changes to files assuming the structure of them has not changed much from the default version created during the initial Ember application creation. If too many changes have been made you will need to manually make the changes below instead:
 
-  * Add ember-test-helpers to your package.json:
-  * `npm install --save-dev ember-cli-acceptance-test-helpers`
   * import the registerTestHelpers function in your `tests/helpers/start-app.js`:
   * Add this line to to the top of `start-app.js`:
     * `import registerAcceptanceTestHelpers from './201-created/register-acceptance-test-helpers';`
   * Register the test helpers:
     * Update `start-app.js` to call `registerAcceptanceTestHelpers`, passing in the QUnit `assert` object, before `App.injectTestHelpers`.
-```js
-  startApp(attrs) {
-    ...
-    registerAcceptanceTestHelpers(attrs.assert || window.QUnit.assert);
-```
-    * Update `module-for-acceptance.js` in project to pass `assert` into `startApp` like this:
-```js
-beforeEach(assert) {
-  this.application = startApp({ assert });
-}
-```
-  * Update your `tests/.jshintrc` file to notify it of the new globals
-    that these helpers have added. Add the following lines to the
-    `predef` array (after "currentRouteName"):
+      ```js
+      startApp(attrs) {
+        ...
+        registerAcceptanceTestHelpers(attrs.assert || window.QUnit.assert);
+      ```
+    * Update `module-for-acceptance.js` in project to pass `assert` into `startApp` like this: 
+      ```js
+      beforeEach(assert) {
+        this.application = startApp({ assert });
+      }
+      ```
 
-```
-"hasComponent",
-"hasElement",
-"hasNoElement",
-"clickComponent",
-```
+  * Update your `tests/.jshintrc` file to notify it of the new globals
+    that these helpers have added. Add the following line to the
+    `predef` array (after "currentRouteName"):
+    ```
+    "clickComponent",
+    ```
 
   * You may need to restart your ember server so that it picks up the new .jshintrc file.
 
