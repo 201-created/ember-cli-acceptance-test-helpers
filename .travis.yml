@@ -26,12 +26,13 @@ matrix:
 
 before_install:
   - npm config set spin false
+  - npm install -g yarn
   - npm install -g bower phantomjs-prebuilt
   - bower --version
   - phantomjs --version
 
 install:
-  - npm install
+  - yarn
   - bower install
 
 script:
