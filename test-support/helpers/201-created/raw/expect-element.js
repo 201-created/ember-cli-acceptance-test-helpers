@@ -1,4 +1,5 @@
 import {getContext} from '../utils/helper-context';
+import Ember from 'ember';
 
 function filterElements(elements, text){
   return elements.filter(':contains(' + text + ')');
@@ -32,6 +33,7 @@ function buildMessage(selector, { filteredCount, selectorCount, ok }, { contains
 }
 
 export default function(app, selector, count, options){
+  Ember.Logger.warn('expectElement() is incompatible with QUnit 2.0. Upgrade to ember-cli-acceptance-test-helpers >= 1.0 and replace with assert.hasElement()');
   if (typeof count === 'object') {
     options = count;
   }

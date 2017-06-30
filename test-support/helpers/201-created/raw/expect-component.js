@@ -7,6 +7,7 @@ const { isPresent } = Ember;
 var K = function(){};
 
 export default function(appOrContainer, expectation, count, options, customMessage){
+  Ember.Logger.warn('expectComponent() is incompatible with QUnit 2.0. Upgrade to ember-cli-acceptance-test-helpers >= 1.0 and replace with assert.hasComponent()');
   var container;
   if (appOrContainer.__container__) {
     container = appOrContainer.__container__;

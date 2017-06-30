@@ -2,6 +2,9 @@
 
 ## Master
 
+## 0.4.4
+  * Add deprecation warning for 1.0 upgrade
+
 ## 0.4.3
   * Support expecting zero component instances via `expectComponent('my-component', 0)` see [35](https://github.com/201-created/ember-cli-acceptance-test-helpers/pull/35)
 
