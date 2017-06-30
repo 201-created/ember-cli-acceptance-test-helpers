@@ -59,24 +59,22 @@ If you want to use this with [`ember-cli-mocha`](https://github.com/switchfly/em
   * Run `ember install ember-cli-acceptance-test-helpers`
   * Commit any file changes made if your application is under source code management
 
-After installing, ember-cil will run a generator. The generator makes changes to files assuming the structure of them has not changed much from the default version created during the initial Ember application creation. If too many changes have been made you will need to manually make the changes below instead:
+After installing, Ember-CLI will run a generator. The generator makes changes to files assuming the structure of them has not changed much from the default version created during the initial Ember application creation. If too many changes have been made you will need to manually make the changes below instead:
 
-  * import the registerTestHelpers function in your `tests/helpers/start-app.js`:
-  * Add this line to to the top of `start-app.js`:
+  * Import the registerTestHelpers function in your `tests/helpers/start-app.js`. Add this line to to the top of `start-app.js`:
     * `import registerAcceptanceTestHelpers from './201-created/register-acceptance-test-helpers';`
-  * Register the test helpers:
-    * Update `start-app.js` to call `registerAcceptanceTestHelpers`, passing in the QUnit `assert` object, before `App.injectTestHelpers`.
-      ```js
-      startApp(attrs) {
-        ...
-        registerAcceptanceTestHelpers(attrs.assert || window.QUnit.assert);
-      ```
-    * Update `module-for-acceptance.js` in project to pass `assert` into `startApp` like this: 
-      ```js
-      beforeEach(assert) {
-        this.application = startApp({ assert });
-      }
-      ```
+  * Register the test helpers. Update `start-app.js` to call `registerAcceptanceTestHelpers`, passing in the QUnit `assert` object, before `App.injectTestHelpers`.
+    ```js
+    startApp(attrs) {
+      ...
+      registerAcceptanceTestHelpers(attrs.assert || window.QUnit.assert);
+    ```
+  * Update `module-for-acceptance.js` in project to pass `assert` into `startApp` like this: 
+    ```js
+    beforeEach(assert) {
+      this.application = startApp({ assert });
+    }
+    ```
 
   * Update your `tests/.jshintrc` file to notify it of the new globals
     that these helpers have added. Add the following line to the
