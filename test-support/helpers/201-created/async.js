@@ -1,8 +1,6 @@
-import Ember from 'ember';
 import {lookupComponent} from './utils/lookup';
 import findComponentElements from './utils/find-component-elements';
-
-const { assert } = Ember;
+import { assert } from '@ember/debug';
 
 export function clickComponent(app, expectation, selector){
   var container;

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import $ from 'jquery';
 
 export function makeElement(elementType, options){
-  var el = Ember.$(document.createElement(elementType));
+  var el = $(document.createElement(elementType));
   if (options.class) { el.addClass('class', options.class); }
   if (options.text)  { el.text(options.text); }
 
@@ -14,14 +14,14 @@ export function makeElements(elementType, options, count){
     els.push(makeElement(elementType, options));
   }
 
-  return Ember.$(els);
+  return $(els);
 }
 
 export function makeApp(findFn){
   return {
     testHelpers: {
-      find: (...args) => Ember.$(findFn(...args))
+      find: (...args) => $(findFn(...args))
     },
-    $: Ember.$
+    $
   };
 }
