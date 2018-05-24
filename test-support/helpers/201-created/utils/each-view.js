@@ -27,7 +27,7 @@ export default function(container, callback){
   var allViews = container.lookup('-view-registry:main');
 
   if ( ! allViews ) { // Ember 1.11.0 compatibility
-    allViews = Ember.View.views;
+    allViews = Ember.View.views;  // eslint-disable-line
   }
 
   var views = Object.keys(allViews).map(function(viewName) {

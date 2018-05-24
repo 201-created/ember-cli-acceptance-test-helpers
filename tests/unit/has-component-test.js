@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import $ from 'jquery';
 import { module } from 'qunit';
 import { test } from 'ember-qunit';
 import hasComponent from '../helpers/201-created/raw/has-component';
@@ -21,7 +21,7 @@ function makeApp(findFn, componentName, componentKlass){
   return {
     testHelpers: { find: findFn },
     __container__: makeContainer(componentName, componentKlass),
-    $: Ember.$
+    $
   };
 }
 

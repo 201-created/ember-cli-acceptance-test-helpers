@@ -1,7 +1,6 @@
-import {getContext} from '../utils/helper-context';
 import hasElement from './has-element';
 
-export default function(app, assert, selector, options, message){
+export default function(app, assert, selector, options){
   if (!options) {
     options = {};
   }

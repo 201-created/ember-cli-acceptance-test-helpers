@@ -1,30 +1,31 @@
-import Ember from 'ember';
+import { registerHelper, registerAsyncHelper } from '@ember/test';
 
 import { wrappedExpectElement,
          wrappedExpectNoElement,
          wrappedExpectComponent } from './sync';
 
 import withinElement from './utils/within-element';
+import { assert as emberAssert }  from '@ember/debug';
 
 import { clickComponent } from './async';
 
 export default function(assert) {
-  Ember.assert('`assert` must be passed to registerAcceptanceTestHelpers(). see README.md', !!assert);
-  Ember.Test.registerHelper('hasElement',   wrappedExpectElement);
-  Ember.Test.registerHelper('hasNoElement', wrappedExpectNoElement);
-  Ember.Test.registerHelper('hasComponent', wrappedExpectComponent);
+  emberAssert('`assert` must be passed to registerAcceptanceTestHelpers(). see README.md', !!assert);
+  registerHelper('hasElement',   wrappedExpectElement);
+  registerHelper('hasNoElement', wrappedExpectNoElement);
+  registerHelper('hasComponent', wrappedExpectComponent);
 
-  Ember.Test.registerHelper('withinElement', withinElement);
+  registerHelper('withinElement', withinElement);
 
-  Ember.Test.registerAsyncHelper('clickComponent', clickComponent);
+  registerAsyncHelper('clickComponent', clickComponent);
 
   assert.hasElement = function () {
-    return hasElement(this, ...arguments);
+    return hasElement(this, ...arguments); // eslint-disable-line
   };
   assert.hasNoElement = function () {
-    return hasNoElement(this, ...arguments);
+    return hasNoElement(this, ...arguments); // eslint-disable-line
   };
   assert.hasComponent = function () {
-    return hasComponent(this, ...arguments);
+    return hasComponent(this, ...arguments); // eslint-disable-line
   };
 }

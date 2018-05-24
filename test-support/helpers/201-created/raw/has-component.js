@@ -1,8 +1,7 @@
 import {lookupComponent} from '../utils/lookup';
 import eachView from '../utils/each-view';
-import Ember from 'ember';
-
-const { isPresent } = Ember;
+import { isPresent } from '@ember/utils';
+import $ from 'jquery';
 
 var K = function(){};
 
@@ -14,7 +13,6 @@ export default function(appOrContainer, assert, expectation, count, options, cus
     container = appOrContainer;
   }
   var Component = lookupComponent(container, expectation);
-  var $ = Ember.$;
 
   if (!Component) {
     return {

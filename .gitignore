@@ -6,14 +6,19 @@
 
 # dependencies
 /node_modules
-/.node_modules.ember-try
 /bower_components
 
 # misc
-*.ember-try
 /.sass-cache
 /connect.lock
 /coverage/*
 /libpeerconnection.log
 npm-debug.log*
+yarn-error.log
 testem.log
+.vscode/
+
+# ember-try
+.node_modules.ember-try/
+bower.json.ember-try
+package.json.ember-try
